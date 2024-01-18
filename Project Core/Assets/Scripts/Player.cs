@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
     public float CroutchSpeed;
     public float CroutchYScale;
     private float StartYScale;
-    private bool IsWallRunning;
-    public float jumpForce = 5.0f; 
-    
+    private bool isWallRunning = false;
+    public float wallRunForce = 10f;
+    public float jumpForce = 5.0f;
+
+    public float maxSlopeAngle;
     private Rigidbody rb;
     [SerializeField] private Camera mainCamera;
     
@@ -91,11 +93,64 @@ public class Player : MonoBehaviour
 
 
     }
-    private bool CanWallRun()
+    private bool CanWallRun(out RaycastHit hit)
     {
-        RaycastHit hit;
-        return Physics.Raycast(transform.position, transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall") ||
-               Physics.Raycast(transform.position, -transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall");
+        hit = new RaycastHit();
+
+        if (Physics.Raycast(transform.position, transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall"))
+        {
+            return true;
+        }
+        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall"))
+        {
+            return true;
+        }
+
+        return false;
+    }
+    private void HandleWallRun()
+    {
+        if (isWallRunning)
+        {
+           
+            RaycastHit hit;
+            if (CanWallRun(out hit))
+            {
+                
+                Vector3 wallRunDirection = Vector3.Cross(Vector3.up, hit.normal);
+
+                
+                rb.AddForce(wallRunDirection.normalized * wallRunForce*Speed, ForceMode.Acceleration);
+
+                
+            }
+            else
+            {
+                
+                StopWallRun();
+            }
+        }
+    }
+    private void StartWallRun(RaycastHit hit)
+    {
+        isWallRunning = true;
+        rb.useGravity = false;
+
+        transform.rotation = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.up), hit.normal);
+
+        
+    }
+    private void FixedUpdate()
+    {
+        
+        HandleWallRun();
+    }
+
+    private void StopWallRun()
+    {
+        isWallRunning = false;
+        rb.useGravity = true;
+
     }
 
 
@@ -112,10 +167,16 @@ public class Player : MonoBehaviour
         {
             rb.drag = DefaultDrag;
         }
-        if (CanWallRun())
+        RaycastHit hit;
+        if (CanWallRun(out hit) && !isGrounded)
         {
-            Debug.Log("Can wall run");
+            StartWallRun(hit);
         }
+        else
+        {
+            StopWallRun();
+        }
+
     }
 
     
