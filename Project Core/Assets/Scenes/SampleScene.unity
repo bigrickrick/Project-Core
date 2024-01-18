@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 347683199}
   - component: {fileID: 347683198}
   - component: {fileID: 347683197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
