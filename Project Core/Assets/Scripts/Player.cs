@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public float CroutchSpeed;
     public float CroutchYScale;
     private float StartYScale;
-    private bool isWalking;
+    private bool IsWallRunning;
     public float jumpForce = 5.0f; 
     
     private Rigidbody rb;
@@ -87,10 +87,18 @@ public class Player : MonoBehaviour
         rb.AddForce(moveDir.normalized * Speed * 10f, ForceMode.Force);
         
 
-       
+
+
+
+    }
+    private bool CanWallRun()
+    {
+        RaycastHit hit;
+        return Physics.Raycast(transform.position, transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall") ||
+               Physics.Raycast(transform.position, -transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall");
     }
 
-   
+
     private void Update()
     {
         HandleMovement();
@@ -103,6 +111,10 @@ public class Player : MonoBehaviour
         else
         {
             rb.drag = DefaultDrag;
+        }
+        if (CanWallRun())
+        {
+            Debug.Log("Can wall run");
         }
     }
 
