@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
     
     public float playerHeight;
     public LayerMask whatIsGround;
+    public LayerMask whatIsWall;
     bool isGrounded;
     private float DefaultDrag = 1f;
     public float groundDrag;
     public GameObject player;
+    private Vector3 wallRunDirection;
     public static Player Instance { get; private set; }
     [SerializeField] private GameInput gameInput;
     private float Speed;
@@ -19,8 +21,8 @@ public class Player : MonoBehaviour
     public float CroutchSpeed;
     public float CroutchYScale;
     private float StartYScale;
-    private bool isWallRunning = false;
-    public float wallRunForce = 10f;
+    public bool isWallRunning = false;
+    public bool isJumping;
     public float jumpForce = 5.0f;
 
     public float maxSlopeAngle;
@@ -28,7 +30,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     
     public Transform orientation;
-    
+
+    public MovementState state;
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air,
+        Croutch,
+        wallrunning
+    }
 
     
     private void Start()
@@ -47,24 +58,22 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnstopCroutch(object sender, System.EventArgs e)
     {
-        Speed = WalkSpeed;
-        transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+        state = MovementState.sprinting;
     }
 
     private void GameInput_OnCroutch(object sender, System.EventArgs e)
     {
-        Speed = CroutchSpeed;
-        transform.localScale = new Vector3(transform.localScale.x, CroutchYScale, transform.localScale.z);
+        state = MovementState.Croutch;
     }
 
     private void GameInput_OnStopSprint(object sender, System.EventArgs e)
     {
-        Speed = WalkSpeed;
+        state = MovementState.walking;
     }
 
     private void GameInput_OnStartSprint(object sender, System.EventArgs e)
     {
-        Speed = SprintSpeed;
+        state = MovementState.sprinting;
     }
 
     private void GameInput_Onjump(object sender, System.EventArgs e)
@@ -72,6 +81,8 @@ public class Player : MonoBehaviour
         if (isGrounded) 
         {
             Jump();
+            isJumping = true;
+            state = MovementState.air;
         }
     }
     private void Jump()
@@ -93,91 +104,74 @@ public class Player : MonoBehaviour
 
 
     }
-    private bool CanWallRun(out RaycastHit hit)
+    private void stateHandler()
     {
-        hit = new RaycastHit();
-
-        if (Physics.Raycast(transform.position, transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall"))
+        switch (state)
         {
-            return true;
+            case MovementState.walking:
+                if (isWallRunning)
+                {
+                    state = MovementState.wallrunning;
+                }
+                transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+                Speed = WalkSpeed;
+                break;
+
+            case MovementState.sprinting:
+                if (isWallRunning)
+                {
+                    state = MovementState.wallrunning;
+                }
+                transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+                Speed = SprintSpeed;
+                break;
+            case MovementState.air:
+                if (isWallRunning)
+                {
+                    state = MovementState.wallrunning;
+                }
+                rb.drag = DefaultDrag;
+                break;
+            case MovementState.Croutch:
+                if (isWallRunning)
+                {
+                    state = MovementState.wallrunning;
+                }
+                Speed = CroutchSpeed;
+                transform.localScale = new Vector3(transform.localScale.x, CroutchYScale, transform.localScale.z);
+                break;
+            case MovementState.wallrunning:
+                Speed = SprintSpeed;
+                rb.drag = groundDrag / 2;
+                break;
         }
-        else if (Physics.Raycast(transform.position, -transform.right, out hit, 1.0f) && hit.collider.CompareTag("Wall"))
-        {
-            return true;
-        }
-
-        return false;
-    }
-    private void HandleWallRun()
-    {
-        if (isWallRunning)
-        {
-           
-            RaycastHit hit;
-            if (CanWallRun(out hit))
-            {
-                
-                Vector3 wallRunDirection = Vector3.Cross(Vector3.up, hit.normal);
-
-                
-                rb.AddForce(wallRunDirection.normalized * wallRunForce*Speed, ForceMode.Acceleration);
-
-                
-            }
-            else
-            {
-                
-                StopWallRun();
-            }
-        }
-    }
-    private void StartWallRun(RaycastHit hit)
-    {
-        isWallRunning = true;
-        rb.useGravity = false;
-
-        transform.rotation = Quaternion.LookRotation(Vector3.Cross(hit.normal, Vector3.up), hit.normal);
-
-        
-    }
-    private void FixedUpdate()
-    {
-        
-        HandleWallRun();
     }
 
-    private void StopWallRun()
-    {
-        isWallRunning = false;
-        rb.useGravity = true;
-
-    }
-
+   
 
     private void Update()
     {
+        
+        stateHandler();
+        Debug.Log("speed " + Speed);
         HandleMovement();
-        isGrounded = Physics.Raycast(transform.position, Vector3.down,playerHeight * 0.5f + 0.2f, whatIsGround);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
+
         if (isGrounded)
         {
+            
             rb.drag = groundDrag;
+            isJumping = false;
+            
 
         }
-        else
-        {
-            rb.drag = DefaultDrag;
-        }
-        RaycastHit hit;
-        if (CanWallRun(out hit) && !isGrounded)
-        {
-            StartWallRun(hit);
-        }
-        else
-        {
-            StopWallRun();
-        }
-
+        Debug.Log(isWallRunning);
+        
     }
 
-    
+   
+
+
+
 }
