@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 39265914}
   - component: {fileID: 39265913}
   - component: {fileID: 39265912}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 886276213}
   - component: {fileID: 886276212}
   - component: {fileID: 886276214}
+  - component: {fileID: 886276215}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -792,8 +793,8 @@ MonoBehaviour:
   groundDrag: 1.5
   player: {fileID: 886276210}
   gameInput: {fileID: 1672911350}
-  SprintSpeed: 1.2
-  WalkSpeed: 0.8
+  SprintSpeed: 2
+  WalkSpeed: 1
   CroutchSpeed: 0.4
   CroutchYScale: 0.5
   isWallRunning: 0
@@ -849,6 +850,25 @@ MonoBehaviour:
   wallCheckDistance: 0.7
   minJumpHeight: 0.5
   orientation: {fileID: 1849997659}
+  cam: {fileID: 963194229}
+--- !u!114 &886276215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886276210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dde6d888140d5946be776bb1423326d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1849997659}
+  playerobj: {fileID: 886276211}
+  maxSlideTime: 0.75
+  slideForce: 80
+  slideYScale: 0.5
+  slideKey: 306
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +969,7 @@ MonoBehaviour:
   sensX: 800
   sensY: 800
   orientation: {fileID: 1849997659}
+  camHolder: {fileID: 1001632950}
 --- !u!1 &973615380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,7 +1793,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8801b8fa51b702743a8ff605746dde23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

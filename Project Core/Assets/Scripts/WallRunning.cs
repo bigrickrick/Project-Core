@@ -37,6 +37,7 @@ public class WallRunning : MonoBehaviour
 
     [Header("References")]
     public Transform orientation;
+    public PlayerCam cam;
     private Player pm;
     private Rigidbody rb;
 
@@ -74,14 +75,14 @@ public class WallRunning : MonoBehaviour
 
     private void StateMachine()
     {
-        // Getting Inputs
+        
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
-        // State 1 - Wallrunning
+        
         Debug.Log("wall left " + wallLeft + " wall right " + wallRight);
         Debug.Log("verticale input " + verticalInput);
         if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround()&&!exitingWall)
@@ -112,7 +113,7 @@ public class WallRunning : MonoBehaviour
             }
         }
 
-        // State 3 - None
+        
         else
         {
             if (pm.isWallRunning)
@@ -126,6 +127,17 @@ public class WallRunning : MonoBehaviour
     private void StartWallRun()
     {
         pm.isWallRunning = true;
+
+        cam.Dofov(90f);
+        if (wallLeft)
+        {
+            cam.DoTilt(-5f);
+
+        }
+        if (wallRight)
+        {
+            cam.DoTilt(5f);
+        }
     }
 
     private void WallRunningMovement()
@@ -143,10 +155,10 @@ public class WallRunning : MonoBehaviour
         }
             
 
-        // forward force
+        
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
-        // upwards/downwards force
+        
         if (upwardsRunning)
         {
             rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
@@ -158,7 +170,7 @@ public class WallRunning : MonoBehaviour
         }
            
 
-        // push to wall force
+        
         if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
         {
             rb.AddForce(-wallNormal * 100, ForceMode.Force);
@@ -170,6 +182,9 @@ public class WallRunning : MonoBehaviour
     {
         pm.isWallRunning = false;
         rb.useGravity = true;
+
+        cam.Dofov(80f);
+        cam.DoTilt(0f);
     }
 
     private void WallJump()
