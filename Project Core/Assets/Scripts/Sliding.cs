@@ -53,7 +53,11 @@ public class Sliding : MonoBehaviour
 
         rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
 
-        slideTimer -= Time.deltaTime;
+        if (pm.isGrounded)
+        {
+            slideTimer -= Time.deltaTime;
+        }
+        
 
         if (slideTimer <=0)
         {

@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     public LayerMask whatIsWall;
-    bool isGrounded;
+    public bool isGrounded;
     private float DefaultDrag = 1f;
     public float groundDrag;
     public GameObject player;
@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
         gameInput.OnstopCroutch += GameInput_OnstopCroutch;
         StartYScale = transform.localScale.y;
         Speed = WalkSpeed;
+        
         rb = GetComponent<Rigidbody>();
     }
 
