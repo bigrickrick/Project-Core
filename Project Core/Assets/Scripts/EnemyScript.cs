@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyScript : MonoBehaviour
+public abstract class EnemyScript : Entity
 {
     
     public int damage;
@@ -48,7 +48,7 @@ public abstract class EnemyScript : MonoBehaviour
     }
     public void SetShootingTimer()
     {
-        ShootingTimer = baseShootingTimer / gameObject.GetComponent<Entity>().attackspeedModifier;
+        ShootingTimer = baseShootingTimer / attackspeedModifier;
     }
     
     
@@ -56,25 +56,8 @@ public abstract class EnemyScript : MonoBehaviour
     {
         Target = GameObject.Find(target).transform;
     }
-    
-    public  void Patroling()
-    {
-        if (!walkPointSet)
-        {
-            SearchWalkPoint();
-        }
 
-        if (walkPointSet)
-        {
-            GoToWalkPoint();
-        }
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
-    }
+    public abstract void Patroling();
     private void GoToWalkPoint()
     {
         Vector3 direction = walkPoint - transform.position;
@@ -89,83 +72,15 @@ public abstract class EnemyScript : MonoBehaviour
     
     public void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatisground))
-        {
-            walkPointSet = true;
-        }
+        
     }
     private void Update()
     {
 
         TargetInSightRange = Physics.CheckSphere(transform.position, detectionRange, whatisplayer);
-        TargetInAttackRange = Physics.CheckSphere(transform.position, Attackrange, whatisplayer) ;
-
-        switch (enemyState)
-        {
-            case EnemyState.Patroling:
-                
-                
-                
-                if (TargetInSightRange)
-                {
-                    enemyState = EnemyState.ChaseTarget;
-                }
-                else
-                {
-                    Patroling();
-                }
-
-                break;
-            case EnemyState.ChaseTarget:
-                ChaseTarget();
-                
-                if (TargetInAttackRange)
-                {
-                    enemyState = EnemyState.AttackTarget;
-                }
-                
-
-                break;
-            case EnemyState.AttackTarget:
-                if (!TargetInAttackRange)
-                {
-                    enemyState = EnemyState.ChaseTarget;
-                }
-                else
-                {
-                    if(ShootingTimer <= 0)
-                    {
-                        ChaseTarget();
-
-                        EnemyAttack();
-                        AlreadyAttacked = true;
-                        SetShootingTimer();
-                    }
-                    else
-                    {
-                        ChaseTarget();
-                        ShootingTimer -= Time.deltaTime;
-                    }
-                    
-                }
-                if (!TargetInSightRange)
-                {
-                    enemyState = EnemyState.Patroling;
-                }
-
-                break;
-        }
-        
-
-        
-        
-       
+        TargetInAttackRange = Physics.CheckSphere(transform.position, Attackrange, whatisplayer) ;       
     }
-    public bool HasDied = false;
+    
 
     private void OnDrawGizmosSelected()
     {

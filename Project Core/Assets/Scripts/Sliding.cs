@@ -20,6 +20,8 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    float slideJumpTimer = 0.5f;
+
     private bool sliding;
 
     private void Start()
@@ -68,15 +70,24 @@ public class Sliding : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
+        
         if (Input.GetKeyDown(slideKey)&& (horizontalInput !=0 || verticalInput != 0))
         {
+            slideJumpTimer -= Time.deltaTime;
             StartSlide();
+            if (slideJumpTimer <= 0)
+            {
+                slideJumpTimer = 0.5f;
+                
+            }
         }
         if(Input.GetKeyUp(slideKey) && sliding)
         {
             StopSlide();
+            
+
         }
+
 
     }
 

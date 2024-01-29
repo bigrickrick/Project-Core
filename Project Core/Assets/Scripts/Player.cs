@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     
     public float playerHeight;
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Vector3 wallRunDirection;
     public static Player Instance { get; private set; }
     [SerializeField] private GameInput gameInput;
-    private float Speed;
+    
     public float SprintSpeed;
     public float WalkSpeed;
     public float CroutchSpeed;
@@ -23,7 +23,9 @@ public class Player : MonoBehaviour
     private float StartYScale;
     public bool isWallRunning = false;
     public bool isJumping;
-    public float jumpForce = 5.0f;
+    public float basejumpForce;
+    private float jumpForce;
+
 
     public float maxSlopeAngle;
     private Rigidbody rb;
@@ -45,14 +47,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        jumpForce = basejumpForce;
         gameInput.Onjump += GameInput_Onjump;
         gameInput.OnStartSprint += GameInput_OnStartSprint;
         gameInput.OnStopSprint += GameInput_OnStopSprint;
         gameInput.OnCroutch += GameInput_OnCroutch;
         gameInput.OnstopCroutch += GameInput_OnstopCroutch;
         StartYScale = transform.localScale.y;
-        Speed = WalkSpeed;
+        EntitySpeed = WalkSpeed;
         
         rb = GetComponent<Rigidbody>();
     }
@@ -92,13 +94,20 @@ public class Player : MonoBehaviour
         isGrounded = false;
     }
 
-
+    public void changeJumpForce(float Force)
+    {
+        jumpForce += Force;
+    }
+    public void ResetJumpForce()
+    {
+        jumpForce += basejumpForce;
+    }
     private void HandleMovement()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
 
-        rb.AddForce(moveDir.normalized * Speed * 10f, ForceMode.Force);
+        rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
         
 
 
@@ -115,7 +124,7 @@ public class Player : MonoBehaviour
                     state = MovementState.wallrunning;
                 }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
-                Speed = WalkSpeed;
+                EntitySpeed = WalkSpeed;
                 break;
 
             case MovementState.sprinting:
@@ -124,7 +133,7 @@ public class Player : MonoBehaviour
                     state = MovementState.wallrunning;
                 }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
-                Speed = SprintSpeed;
+                EntitySpeed = SprintSpeed;
                 break;
             case MovementState.air:
                 if (isWallRunning)
@@ -138,11 +147,11 @@ public class Player : MonoBehaviour
                 {
                     state = MovementState.wallrunning;
                 }
-                Speed = CroutchSpeed;
+                EntitySpeed = CroutchSpeed;
                 transform.localScale = new Vector3(transform.localScale.x, CroutchYScale, transform.localScale.z);
                 break;
             case MovementState.wallrunning:
-                Speed = SprintSpeed;
+                EntitySpeed = SprintSpeed;
                 rb.drag = groundDrag / 2;
                 break;
         }
@@ -154,7 +163,7 @@ public class Player : MonoBehaviour
     {
         
         stateHandler();
-        Debug.Log("speed " + Speed);
+        
         HandleMovement();
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         
