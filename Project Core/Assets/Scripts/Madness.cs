@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Madness : MonoBehaviour
 {
     
     public int maddnesslevelmax;
+
+    private int maddnesslevel = 0;
 
     public float maddnessspeedincrease= 0.1f;
 
@@ -13,13 +17,38 @@ public class Madness : MonoBehaviour
     
     public void ApplyMaddness(Player player)
     {
-        player.attackspeedModifier += maddnessAttackspeedincrease;
-        player.EntitySpeed += maddnessspeedincrease;
-        player.WalkSpeed+= maddnessspeedincrease;
-        player.SprintSpeed += maddnessspeedincrease;
-        player.CroutchSpeed += maddnessspeedincrease;
+        if(maddnesslevel <maddnesslevelmax)
+        {
+            player.attackspeedModifier += maddnessAttackspeedincrease;
+            player.EntitySpeed += maddnessspeedincrease;
+            player.WalkSpeed += maddnessspeedincrease;
+            player.SprintSpeed += maddnessspeedincrease;
+            player.CroutchSpeed += maddnessspeedincrease;
+            maddnesslevel += 1;
+        }
+        
         
     }
+
+    [SerializeField] private Image maddnessbar;
     
+
+
+
+
+
+    private void Update()
+    {
+        UpdateHpbar();
+    }
+    private void UpdateHpbar()
+    {
+        float maddness = (float)maddnesslevel / (float)maddnesslevelmax;
+        Debug.Log("Health Percentage: " + maddness);
+        maddnessbar.fillAmount = maddness;
+        
+
+    }
+
 
 }
