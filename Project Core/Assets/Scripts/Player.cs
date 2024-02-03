@@ -12,10 +12,11 @@ public class Player : Entity
     private float DefaultDrag = 1f;
     public float groundDrag;
     public GameObject player;
-    private Vector3 wallRunDirection;
+    
     public static Player Instance { get; private set; }
     [SerializeField] private GameInput gameInput;
-    
+    public Transform firepoint;
+    public SpellInventory spellInventory;
     public float SprintSpeed;
     public float WalkSpeed;
     public float CroutchSpeed;
@@ -25,8 +26,10 @@ public class Player : Entity
     public bool isJumping;
     public float basejumpForce;
     private float jumpForce;
-
-
+    private bool isShooting;
+    private bool isShootingAlternate;
+    private float TimeBetweenShoots;
+    private float TimeBetweenShootsAlternate;
     public float maxSlopeAngle;
     private Rigidbody rb;
     [SerializeField] private Camera mainCamera;
@@ -53,10 +56,38 @@ public class Player : Entity
         gameInput.OnStopSprint += GameInput_OnStopSprint;
         gameInput.OnCroutch += GameInput_OnCroutch;
         gameInput.OnstopCroutch += GameInput_OnstopCroutch;
+        gameInput.OnShoot += GameInput_OnShoot;
+        gameInput.OnStopShoot += GameInput_OnStopShoot;
+        gameInput.OnShootAlternate += GameInput_OnShootAlternate;
+        gameInput.OnStopShootAlternate += GameInput_OnStopShootAlternate;
         StartYScale = transform.localScale.y;
         EntitySpeed = WalkSpeed;
         
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void GameInput_OnStopShootAlternate(object sender, System.EventArgs e)
+    {
+        isShootingAlternate = false;
+    }
+
+    private void GameInput_OnShootAlternate(object sender, System.EventArgs e)
+    {
+
+        isShootingAlternate = true;
+        Debug.Log("shoot alternate " + isShootingAlternate);
+    }
+
+    private void GameInput_OnStopShoot(object sender, System.EventArgs e)
+    {
+        isShooting = false;
+        
+    }
+
+    private void GameInput_OnShoot(object sender, System.EventArgs e)
+    {
+        isShooting = true;
+        
     }
 
     private void GameInput_OnstopCroutch(object sender, System.EventArgs e)
@@ -177,7 +208,47 @@ public class Player : Entity
 
         }
         Debug.Log(isWallRunning);
-        
+        if(isShooting == true)
+        {
+            if(TimeBetweenShoots <= 0)
+            {
+                if (spellInventory.SpellList.Count > 0)
+                {
+                    spellInventory.currentSpell.ShootSpell(firepoint);
+                    TimeBetweenShoots = spellInventory.currentSpell.spell.castTime / attackspeedModifier;
+                }
+                else
+                {
+                    Debug.Log("you don't have a spell equiped");
+                }
+            }
+
+        }
+        if (isShootingAlternate == true)
+        {
+            if (TimeBetweenShootsAlternate <= 0)
+            {
+                if (spellInventory.SpellList.Count > 0)
+                {
+                    spellInventory.currentSpell2.ShootSpell(firepoint);
+                    TimeBetweenShootsAlternate = spellInventory.currentSpell2.spell.castTime / attackspeedModifier;
+                }
+                else
+                {
+                    Debug.Log("you don't have a spell equiped");
+                }
+            }
+
+        }
+        if (TimeBetweenShoots > 0)
+        {
+            TimeBetweenShoots -= Time.deltaTime;
+        }
+        if (TimeBetweenShootsAlternate > 0)
+        {
+            TimeBetweenShootsAlternate -= Time.deltaTime;
+        }
+
     }
 
    

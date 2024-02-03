@@ -13,6 +13,10 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnStopSprint;
     public event EventHandler OnCroutch;
     public event EventHandler OnstopCroutch;
+    public event EventHandler OnShoot;
+    public event EventHandler OnStopShoot;
+    public event EventHandler OnShootAlternate;
+    public event EventHandler OnStopShootAlternate;
     public void Awake()
     {
         Instance = this;
@@ -23,7 +27,31 @@ public class GameInput : MonoBehaviour
         playerInputAction.Player.Sprint.canceled += Sprint_canceled;
         playerInputAction.Player.Croutch.performed += Croutch_performed;
         playerInputAction.Player.Croutch.canceled += Croutch_canceled;
+        playerInputAction.Player.Shoot.performed += Shoot_performed;
+        playerInputAction.Player.Shoot.canceled += Shoot_canceled;
+        playerInputAction.Player.ShootAlternate.performed += ShootAlternate_performed;
+        playerInputAction.Player.ShootAlternate.canceled += ShootAlternate_canceled;
         
+    }
+
+    private void ShootAlternate_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnStopShootAlternate?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ShootAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnShootAlternate?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Shoot_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnStopShoot?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Shoot_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnShoot?.Invoke(this, EventArgs.Empty);
     }
 
     private void Croutch_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
