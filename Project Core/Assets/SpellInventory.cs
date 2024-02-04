@@ -5,17 +5,28 @@ using UnityEngine;
 public class SpellInventory : MonoBehaviour
 {
     public List<Spell> SpellList = new List<Spell>();
+    private List<Spell> SpellListAlternate = new List<Spell>();
     public bool HasSpellInleftHand;
     public bool HasSpellInRightHand;
     public Spell currentSpell;
     public Spell currentSpell2;
     public int spellNumber;
+    public int spellNumberAlternate;
 
+    private void Start()
+    {
+        SpellListAlternate = SpellList;
+    }
+    public void AddSpellToSpellLists(Spell spell)
+    {
+        SpellList.Add(spell);
+        SpellListAlternate.Add(spell);
+    }
     private void Update()
     {
         if (SpellList.Count > 0)
         {
-            if (!HasSpellInleftHand)
+            if (!HasSpellInleftHand || !HasSpellInRightHand)
             {
                 MakeSpellAppearInPlayerHand();
                 HasSpellInleftHand = true;
@@ -25,16 +36,31 @@ public class SpellInventory : MonoBehaviour
 
     public void SpellSwitch(int number)
     {
-        spellNumber += number;
-
-        HasSpellInleftHand = false;
-        if (spellNumber >= SpellList.Count)
+        if(number == 0)
         {
-            spellNumber = 0;
+            spellNumber++;
+            HasSpellInleftHand = false;
+            if (spellNumber >= SpellList.Count)
+            {
+                spellNumber = 0;
+            }
+            else if (spellNumber < 0)
+            {
+                spellNumber = SpellList.Count - 1;
+            }
         }
-        else if (spellNumber < 0)
+        else if(number == 1)
         {
-            spellNumber = SpellList.Count - 1;
+            spellNumberAlternate++;
+            HasSpellInleftHand = false;
+            if (spellNumberAlternate >= SpellListAlternate.Count)
+            {
+                spellNumberAlternate = 0;
+            }
+            else if (spellNumberAlternate < 0)
+            {
+                spellNumberAlternate = SpellListAlternate.Count - 1;
+            }
         }
     }
 
@@ -60,14 +86,14 @@ public class SpellInventory : MonoBehaviour
         {
             Debug.LogError("SpellList is null or empty.");
         }
-        if (SpellList != null && SpellList.Count > 0)
+        if (SpellListAlternate != null && SpellListAlternate.Count > 0)
         {
             if (currentSpell2 != null)
             {
                 Destroy(currentSpell2.gameObject);
             }
 
-            currentSpell2 = InstantiateSpell(SpellList[spellNumber]);
+            currentSpell2 = InstantiateSpell(SpellListAlternate[spellNumberAlternate]);
 
             if (currentSpell2 != null)
             {

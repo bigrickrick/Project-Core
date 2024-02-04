@@ -60,11 +60,24 @@ public class Player : Entity
         gameInput.OnStopShoot += GameInput_OnStopShoot;
         gameInput.OnShootAlternate += GameInput_OnShootAlternate;
         gameInput.OnStopShootAlternate += GameInput_OnStopShootAlternate;
+        gameInput.OnSwitch += GameInput_OnSwitch;
+        gameInput.OnSwitchAlternate += GameInput_OnSwitchAlternate;
         StartYScale = transform.localScale.y;
         EntitySpeed = WalkSpeed;
         
         rb = GetComponent<Rigidbody>();
     }
+
+    private void GameInput_OnSwitchAlternate(object sender, System.EventArgs e)
+    {
+        spellInventory.SpellSwitch(1);
+    }
+
+    private void GameInput_OnSwitch(object sender, System.EventArgs e)
+    {
+        spellInventory.SpellSwitch(0);
+    }
+    
 
     private void GameInput_OnStopShootAlternate(object sender, System.EventArgs e)
     {

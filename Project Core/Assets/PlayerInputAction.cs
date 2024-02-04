@@ -80,6 +80,24 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3c8d5b2-c94d-4395-a865-0474b702fb18"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchAlternate"",
+                    ""type"": ""Button"",
+                    ""id"": ""b79d7577-76f5-43d2-ac46-9dac8ff775e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +210,28 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""ShootAlternate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb1932e3-f801-4403-b8fb-b600783c57f4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8883169-3a15-4dd6-8bbf-6cac4daa7b48"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchAlternate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +246,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Croutch = m_Player.FindAction("Croutch", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_ShootAlternate = m_Player.FindAction("ShootAlternate", throwIfNotFound: true);
+        m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_SwitchAlternate = m_Player.FindAction("SwitchAlternate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +315,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Croutch;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_ShootAlternate;
+    private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_SwitchAlternate;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -283,6 +327,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Croutch => m_Wrapper.m_Player_Croutch;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @ShootAlternate => m_Wrapper.m_Player_ShootAlternate;
+        public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @SwitchAlternate => m_Wrapper.m_Player_SwitchAlternate;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +356,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ShootAlternate.started += instance.OnShootAlternate;
             @ShootAlternate.performed += instance.OnShootAlternate;
             @ShootAlternate.canceled += instance.OnShootAlternate;
+            @Switch.started += instance.OnSwitch;
+            @Switch.performed += instance.OnSwitch;
+            @Switch.canceled += instance.OnSwitch;
+            @SwitchAlternate.started += instance.OnSwitchAlternate;
+            @SwitchAlternate.performed += instance.OnSwitchAlternate;
+            @SwitchAlternate.canceled += instance.OnSwitchAlternate;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +384,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ShootAlternate.started -= instance.OnShootAlternate;
             @ShootAlternate.performed -= instance.OnShootAlternate;
             @ShootAlternate.canceled -= instance.OnShootAlternate;
+            @Switch.started -= instance.OnSwitch;
+            @Switch.performed -= instance.OnSwitch;
+            @Switch.canceled -= instance.OnSwitch;
+            @SwitchAlternate.started -= instance.OnSwitchAlternate;
+            @SwitchAlternate.performed -= instance.OnSwitchAlternate;
+            @SwitchAlternate.canceled -= instance.OnSwitchAlternate;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +415,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnCroutch(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnShootAlternate(InputAction.CallbackContext context);
+        void OnSwitch(InputAction.CallbackContext context);
+        void OnSwitchAlternate(InputAction.CallbackContext context);
     }
 }
