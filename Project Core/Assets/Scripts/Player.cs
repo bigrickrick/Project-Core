@@ -150,15 +150,16 @@ public class Player : Entity
     }
     private void HandleMovement()
     {
-        if (OnSlope())
-        {
-            rb.AddForce(GetSlopeMoveDirection() * EntitySpeed * 20f, ForceMode.Force);
-        }
+        
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
 
         rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
-
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection(moveDir) * EntitySpeed * 20f, ForceMode.Force);
+            
+        }
         rb.useGravity = !OnSlope();
 
 
@@ -207,7 +208,7 @@ public class Player : Entity
         }
     }
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down,out slopeHIt, playerHeight * 0.5f + 0.3f))
         {
@@ -216,9 +217,9 @@ public class Player : Entity
         }
         return false;
     }
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(moveDir, slopeHIt.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, slopeHIt.normal).normalized;
     }
 
     private void Update()

@@ -53,11 +53,19 @@ public class Sliding : MonoBehaviour
     {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
-
-        if (pm.isGrounded)
+       
+        if(!pm.OnSlope()|| rb.velocity.y > -0.1f)
         {
-            slideTimer -= Time.deltaTime;
+            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
+            if (pm.isGrounded)
+            {
+                slideTimer -= Time.deltaTime;
+            }
+            
+        }
+        else
+        {
+            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         }
         
 
