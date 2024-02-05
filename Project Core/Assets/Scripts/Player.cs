@@ -31,8 +31,10 @@ public class Player : Entity
     private float TimeBetweenShoots;
     private float TimeBetweenShootsAlternate;
     public float maxSlopeAngle;
+    private RaycastHit slopeHIt;
     private Rigidbody rb;
     [SerializeField] private Camera mainCamera;
+    private Vector3 moveDir;
     
     public Transform orientation;
 
@@ -148,12 +150,16 @@ public class Player : Entity
     }
     private void HandleMovement()
     {
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection() * EntitySpeed * 20f, ForceMode.Force);
+        }
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        Vector3 moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
+        moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
 
         rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
-        
 
+        rb.useGravity = !OnSlope();
 
 
 
@@ -201,7 +207,19 @@ public class Player : Entity
         }
     }
 
-   
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down,out slopeHIt, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHIt.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDir, slopeHIt.normal).normalized;
+    }
 
     private void Update()
     {
