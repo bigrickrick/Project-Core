@@ -49,7 +49,7 @@ MonoBehaviour:
   amount: 1
   potionvisual: {fileID: 6781259630923217971}
   rotationSpeed: 200
-  durationInSeconds: 5
+  durationInSeconds: 10
 --- !u!135 &6782275925102980686
 SphereCollider:
   m_ObjectHideFlags: 0
