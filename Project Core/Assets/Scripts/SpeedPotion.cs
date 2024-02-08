@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpeedPotion : Potion
+{
+    public float durationInSeconds = 1f;
+
+    public override void Apply(GameObject target)
+    {
+        Player entity = target.GetComponent<Player>();
+        if (entity != null)
+        {
+            entity.WalkSpeed += amount;
+            entity.SprintSpeed += amount;
+            entity.CroutchSpeed += amount;
+
+            StartCoroutine(RemoveBuff(entity));
+            // Don't destroy the potion here, let it be destroyed on contact.
+        }
+    }
+
+    private IEnumerator RemoveBuff(Player entity)
+    {
+        yield return new WaitForSeconds(durationInSeconds);
+
+        entity.WalkSpeed -= amount; // Subtract the buffed amount
+        entity.SprintSpeed -= amount;
+        entity.CroutchSpeed -= amount;
+
+        // Make sure the potion still exists before attempting to destroy it
+        if (gameObject != null)
+            Destroy(gameObject);
+    }
+}

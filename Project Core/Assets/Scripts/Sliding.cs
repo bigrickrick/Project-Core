@@ -65,7 +65,7 @@ public class Sliding : MonoBehaviour
         }
         else
         {
-            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
+            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce*2f, ForceMode.Force);
         }
         
 

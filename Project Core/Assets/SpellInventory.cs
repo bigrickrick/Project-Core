@@ -12,16 +12,20 @@ public class SpellInventory : MonoBehaviour
     public Spell currentSpell2;
     public int spellNumber;
     public int spellNumberAlternate;
+    public Transform LeftHand;
+    public Transform RightHand;
 
     private void Start()
     {
         SpellListAlternate = SpellList;
     }
+
     public void AddSpellToSpellLists(Spell spell)
     {
         SpellList.Add(spell);
         SpellListAlternate.Add(spell);
     }
+
     private void Update()
     {
         if (SpellList.Count > 0)
@@ -30,16 +34,18 @@ public class SpellInventory : MonoBehaviour
             {
                 MakeSpellAppearInPlayerHand();
                 HasSpellInleftHand = true;
+                HasSpellInRightHand = true; // Added to ensure both hands are set to true
             }
         }
     }
 
     public void SpellSwitch(int number)
     {
-        if(number == 0)
+        if (number == 0)
         {
             spellNumber++;
             HasSpellInleftHand = false;
+            HasSpellInRightHand = false;
             if (spellNumber >= SpellList.Count)
             {
                 spellNumber = 0;
@@ -49,10 +55,11 @@ public class SpellInventory : MonoBehaviour
                 spellNumber = SpellList.Count - 1;
             }
         }
-        else if(number == 1)
+        else if (number == 1)
         {
             spellNumberAlternate++;
             HasSpellInleftHand = false;
+            HasSpellInRightHand = false;
             if (spellNumberAlternate >= SpellListAlternate.Count)
             {
                 spellNumberAlternate = 0;
@@ -77,7 +84,8 @@ public class SpellInventory : MonoBehaviour
 
             if (currentSpell != null)
             {
-                currentSpell.transform.SetParent(transform);
+                // Set the spell for the left hand
+                currentSpell.transform.SetParent(LeftHand);
                 currentSpell.transform.localPosition = Vector3.zero;
                 currentSpell.transform.localRotation = Quaternion.identity;
             }
@@ -86,6 +94,7 @@ public class SpellInventory : MonoBehaviour
         {
             Debug.LogError("SpellList is null or empty.");
         }
+
         if (SpellListAlternate != null && SpellListAlternate.Count > 0)
         {
             if (currentSpell2 != null)
@@ -97,20 +106,20 @@ public class SpellInventory : MonoBehaviour
 
             if (currentSpell2 != null)
             {
-                currentSpell2.transform.SetParent(transform);
+                // Set the spell for the right hand
+                currentSpell2.transform.SetParent(RightHand);
                 currentSpell2.transform.localPosition = Vector3.zero;
                 currentSpell2.transform.localRotation = Quaternion.identity;
             }
         }
         else
         {
-            Debug.LogError("SpellList is null or empty.");
+            Debug.LogError("SpellListAlternate is null or empty.");
         }
     }
 
     private Spell InstantiateSpell(Spell spellPrefab)
     {
-        
         return Instantiate(spellPrefab);
     }
 }

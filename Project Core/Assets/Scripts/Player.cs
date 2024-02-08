@@ -15,7 +15,8 @@ public class Player : Entity
     
     public static Player Instance { get; private set; }
     [SerializeField] private GameInput gameInput;
-    public Transform firepoint;
+    public Transform Leftfirepoint;
+    public Transform Rightfirepoint;
     public SpellInventory spellInventory;
     public float SprintSpeed;
     public float WalkSpeed;
@@ -25,7 +26,7 @@ public class Player : Entity
     public bool isWallRunning = false;
     public bool isJumping;
     public float basejumpForce;
-    private float jumpForce;
+    public float jumpForce;
     private bool isShooting;
     private bool isShootingAlternate;
     private float TimeBetweenShoots;
@@ -101,6 +102,7 @@ public class Player : Entity
 
     private void GameInput_OnShoot(object sender, System.EventArgs e)
     {
+        
         isShooting = true;
         
     }
@@ -146,8 +148,11 @@ public class Player : Entity
     }
     public void ResetJumpForce()
     {
-        jumpForce += basejumpForce;
+        jumpForce = basejumpForce;
     }
+    //slope stuff
+
+
     private void HandleMovement()
     {
         
@@ -157,12 +162,15 @@ public class Player : Entity
         rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
         if (OnSlope())
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDir) * EntitySpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(moveDir) * EntitySpeed * 10f, ForceMode.Force);
             
         }
         rb.useGravity = !OnSlope();
 
-
+        if (!isGrounded)
+        {
+            rb.AddForce(Vector3.down * 2, ForceMode.Force);
+        }
 
     }
     private void stateHandler()
@@ -239,14 +247,21 @@ public class Player : Entity
             
 
         }
+        else if (!isGrounded)
+        {
+
+        }
         Debug.Log(isWallRunning);
         if(isShooting == true)
         {
-            if(TimeBetweenShoots <= 0)
+            //Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
+
+            if (TimeBetweenShoots <= 0)
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
-                    spellInventory.currentSpell.ShootSpell(firepoint);
+                    spellInventory.currentSpell.ShootSpell(Leftfirepoint);
+                    //Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
                     TimeBetweenShoots = spellInventory.currentSpell.spell.castTime / attackspeedModifier;
                 }
                 else
@@ -262,7 +277,7 @@ public class Player : Entity
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
-                    spellInventory.currentSpell2.ShootSpell(firepoint);
+                    spellInventory.currentSpell2.ShootSpell(Rightfirepoint);
                     TimeBetweenShootsAlternate = spellInventory.currentSpell2.spell.castTime / attackspeedModifier;
                 }
                 else
