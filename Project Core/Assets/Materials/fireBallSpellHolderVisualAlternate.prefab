@@ -9657,3 +9657,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Particules: {fileID: 204933888812230953}
+  emissionRate: 200
+  OriginalEmission: 25

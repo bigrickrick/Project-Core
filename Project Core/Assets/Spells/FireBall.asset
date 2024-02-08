@@ -15,5 +15,4 @@ MonoBehaviour:
   spellName: FireBall
   damage: 10
   castTime: 2
-  SpellBulletspeed: 80
-  spellProjectile: {fileID: 8883687443889985489, guid: bf019da9d773d16418765084c13e7b35, type: 3}
+  spellProjectile: {fileID: 2555902988800368086, guid: bf019da9d773d16418765084c13e7b35, type: 3}

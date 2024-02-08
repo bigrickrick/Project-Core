@@ -5,19 +5,32 @@ public class SpellHandVisualEffect : MonoBehaviour
 {
     public ParticleSystem Particules;
     private ParticleSystem.MainModule mainModule;
+    public float emissionRate;
+    public float OriginalEmission;
 
     private void Start()
     {
         mainModule = Particules.main;
+       
     }
+
+    
 
     private IEnumerator AdjustParticles(bool increase)
     {
-        while (increase)
+        var emission = Particules.emission;
+
+        if (increase)
         {
-            mainModule.maxParticles = Mathf.Clamp(mainModule.maxParticles + (increase ? 10 : -10), 0, 1000);
-            yield return null;
+            emission.rateOverTime = emissionRate;
         }
+        else
+        {
+            emission.rateOverTime = OriginalEmission;
+        }
+
+        yield return null; 
+        Debug.Log("Emission rate: " + emission.rateOverTime.constant);
     }
 
     public void StartIncreasingParticles()

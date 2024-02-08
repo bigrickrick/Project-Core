@@ -7,6 +7,5 @@ public class SpellStats : ScriptableObject
     public string spellName;
     public int damage;
     public float castTime;
-    public float SpellBulletspeed;
-    public GameObject spellProjectile;
+    public Projectile spellProjectile;
 }

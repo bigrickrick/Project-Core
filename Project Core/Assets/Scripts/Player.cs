@@ -34,6 +34,9 @@ public class Player : Entity
     public float maxSlopeAngle;
     private RaycastHit slopeHIt;
     private Rigidbody rb;
+    public float InitialAirForceDownTimer;
+    private float AirForceDownTimer;
+    private float ForceDownIncrease = 0;
     [SerializeField] private Camera mainCamera;
     private Vector3 moveDir;
     
@@ -158,20 +161,39 @@ public class Player : Entity
         
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
+        moveDir.y = 0;
 
-        rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
+        
         if (OnSlope())
         {
             rb.AddForce(GetSlopeMoveDirection(moveDir) * EntitySpeed * 10f, ForceMode.Force);
             
         }
-        rb.useGravity = !OnSlope();
+        else
+        {
+            rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
+        }
+        //rb.useGravity = !OnSlope();
 
         if (!isGrounded)
         {
-            rb.AddForce(Vector3.down * 2, ForceMode.Force);
+            float forceDown = 1 + ForceDownIncrease;
+            Debug.Log("ForceDown " + forceDown);
+            rb.AddForce(Vector3.down * forceDown, ForceMode.Force);
+            if (AirForceDownTimer <= 0)
+            {
+                AirForceDownTimer = InitialAirForceDownTimer;
+                ForceDownIncrease += 0.25f;
+            }
         }
-
+        else if (isGrounded ||isWallRunning)
+        {
+            ForceDownIncrease = 0;
+        }
+        if(AirForceDownTimer > 0&& !isGrounded)
+        {
+            AirForceDownTimer -= Time.deltaTime;
+        }
     }
     private void stateHandler()
     {
@@ -227,7 +249,9 @@ public class Player : Entity
     }
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(direction, slopeHIt.normal).normalized;
+        Vector3 slopeDirection = Vector3.ProjectOnPlane(direction, slopeHIt.normal).normalized;
+        Debug.Log(slopeDirection);
+        return slopeDirection;
     }
 
     private void Update()
@@ -252,49 +276,71 @@ public class Player : Entity
 
         }
         Debug.Log(isWallRunning);
-        if(isShooting == true)
+        if (isShooting)
         {
-            //Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
+            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
 
             if (TimeBetweenShoots <= 0)
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
+                    Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
                     spellInventory.currentSpell.ShootSpell(Leftfirepoint);
-                    //Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
                     TimeBetweenShoots = spellInventory.currentSpell.spell.castTime / attackspeedModifier;
                 }
                 else
                 {
-                    Debug.Log("you don't have a spell equiped");
+                    Debug.Log("You don't have a spell equipped");
                 }
             }
-
         }
-        if (isShootingAlternate == true)
+        else
         {
+            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
+        }
+
+        
+        if (!isShooting || TimeBetweenShoots > 0)
+        {
+            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
+        }
+        if (isShootingAlternate)
+        {
+            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
+
             if (TimeBetweenShootsAlternate <= 0)
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
+                    Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
                     spellInventory.currentSpell2.ShootSpell(Rightfirepoint);
                     TimeBetweenShootsAlternate = spellInventory.currentSpell2.spell.castTime / attackspeedModifier;
                 }
                 else
                 {
-                    Debug.Log("you don't have a spell equiped");
+                    Debug.Log("You don't have a spell equipped");
                 }
             }
-
         }
-        if (TimeBetweenShoots > 0)
+        else
         {
-            TimeBetweenShoots -= Time.deltaTime;
+            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
+        }
+
+        
+        if (!isShootingAlternate || TimeBetweenShootsAlternate > 0)
+        {
+            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
         }
         if (TimeBetweenShootsAlternate > 0)
         {
             TimeBetweenShootsAlternate -= Time.deltaTime;
         }
+        if (TimeBetweenShoots > 0)
+        {
+            TimeBetweenShoots -= Time.deltaTime;
+        }
+
 
     }
 
