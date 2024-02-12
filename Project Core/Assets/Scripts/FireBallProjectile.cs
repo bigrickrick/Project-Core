@@ -8,4 +8,8 @@ public class FireBallProjectile : Projectile
     {
         //explosion probably
     }
+    public override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+    }
 }

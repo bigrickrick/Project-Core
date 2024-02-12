@@ -22,13 +22,10 @@ public abstract class Projectile : MonoBehaviour
             }
 
             
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            
         }
 
-        
+        Destroy(gameObject);
+
     }
 }
