@@ -70,7 +70,12 @@ public class Player : Entity
         gameInput.OnSwitchAlternate += GameInput_OnSwitchAlternate;
         StartYScale = transform.localScale.y;
         EntitySpeed = WalkSpeed;
-        
+        if (Instance == null)
+        {
+            
+            Instance = this;
+        }
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -172,6 +177,7 @@ public class Player : Entity
         else
         {
             rb.AddForce(moveDir.normalized * EntitySpeed * 10f, ForceMode.Force);
+            
         }
         //rb.useGravity = !OnSlope();
 

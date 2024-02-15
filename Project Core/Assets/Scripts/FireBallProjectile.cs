@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class FireBallProjectile : Projectile
 {
+    public ParticleSystem ExplosionParticles;
     public override void ApplyEffect()
     {
-        //explosion probably
+        Instantiate(ExplosionParticles, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+
+        ExplosionParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
-    public override void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
+        Debug.Log("collision Detected");
+        if (other.CompareTag("Enemy"))
+        {
+
+            Entity entity = other.GetComponent<Entity>();
+            
+            if (entity != null)
+            {
+                entity.DamageRecieve(ProjectileDamage);
+            }
+
+
+
+        }
+        ApplyEffect();
+        Destroy(gameObject);
     }
 }

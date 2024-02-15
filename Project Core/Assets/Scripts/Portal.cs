@@ -18,7 +18,11 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            destination = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
+            if (GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>() != null)
+            {
+                destination = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
+            }
+           
         }
     }
 
@@ -29,6 +33,7 @@ public class Portal : MonoBehaviour
             if (Vector3.Distance(transform.position, other.transform.position) > distance)
             {
                 HasTeleported = true;
+                destination.GetComponent<Portal>().HasTeleported = true;
                 Vector3 destinationPosition = destination.position + Vector3.up;
                 other.transform.position = destinationPosition;
             }
@@ -37,9 +42,7 @@ public class Portal : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            HasTeleported = false;
-        }
+        HasTeleported = false;
     }
+
 }

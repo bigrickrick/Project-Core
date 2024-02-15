@@ -9,20 +9,20 @@ public abstract class Potion : MonoBehaviour
     public abstract void Apply(GameObject target);
     private Collider potionCollider;
     [SerializeField] private GameObject potionvisual;
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        
         GameObject collidedObject = collision.gameObject;
 
-        
+
         if (collidedObject.CompareTag("Player"))
         {
-            
+
             Apply(collidedObject);
             potionCollider.enabled = false;
             potionvisual.SetActive(false);
         }
     }
+    
     void Start()
     {
         potionCollider = GetComponent<Collider>(); // Get the collider component attached to the potion
