@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60cdf3e6a8fa21149b571126672a88d4, type: 3}
-  m_Name: PortalSpell
+  m_Name: PortalSpell 2
   m_EditorClassIdentifier: 
   spellName: Portal
   damage: 0
   castTime: 1
-  spellProjectile: {fileID: 2445135197432341810, guid: 80d9d0bc43d16824fb44e924cfbf0b25, type: 3}
+  spellProjectile: {fileID: 2445135197432341810, guid: a63a9625da1825d408f5c5f58d33f0ad, type: 3}

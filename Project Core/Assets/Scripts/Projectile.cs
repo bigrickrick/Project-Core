@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     public int ProjectileDamage;
-    public int ProjectileSpeed;
+    public float ProjectileSpeed;
 
     public abstract void ApplyEffect();
     //public abstract void OnTriggerEnter(Collider other);

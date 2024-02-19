@@ -8,6 +8,8 @@ TagManager:
   - OrangePortal
   - BluePortal
   - Enemy
+  - Projectile
+  - Greenportal
   layers:
   - Default
   - TransparentFX
@@ -17,9 +19,9 @@ TagManager:
   - UI
   - whatisWall
   - Post processing
-  - 
-  - 
-  - 
+  - ProjectilesPlayer
+  - ProjectilesEnemy
+  - Player
   - 
   - 
   - 

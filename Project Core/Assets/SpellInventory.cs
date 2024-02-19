@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpellInventory : MonoBehaviour
 {
     public List<Spell> SpellList = new List<Spell>();
-    private List<Spell> SpellListAlternate = new List<Spell>();
+    public List<Spell> SpellListAlternate = new List<Spell>();
     public bool HasSpellInleftHand;
     public bool HasSpellInRightHand;
     public Spell currentSpell;
@@ -15,10 +15,7 @@ public class SpellInventory : MonoBehaviour
     public Transform LeftHand;
     public Transform RightHand;
 
-    private void Start()
-    {
-        SpellListAlternate = SpellList;
-    }
+    
 
     public void AddSpellToSpellLists(Spell spell)
     {
@@ -77,14 +74,15 @@ public class SpellInventory : MonoBehaviour
         {
             if (currentSpell != null)
             {
-                Destroy(currentSpell.gameObject);
+                currentSpell.gameObject.SetActive(false);
+                currentSpell = null;
             }
 
-            currentSpell = InstantiateSpell(SpellList[spellNumber]);
-
+            currentSpell = SpellList[spellNumber];
+            currentSpell.gameObject.SetActive(true);
             if (currentSpell != null)
             {
-                // Set the spell for the left hand
+                
                 currentSpell.transform.SetParent(LeftHand);
                 currentSpell.transform.localPosition = Vector3.zero;
                 currentSpell.transform.localRotation = Quaternion.identity;
@@ -99,11 +97,12 @@ public class SpellInventory : MonoBehaviour
         {
             if (currentSpell2 != null)
             {
-                Destroy(currentSpell2.gameObject);
+                currentSpell2.gameObject.SetActive(false);
+                
             }
 
-            currentSpell2 = InstantiateSpell(SpellListAlternate[spellNumberAlternate]);
-
+            currentSpell2 = SpellListAlternate[spellNumberAlternate];
+            currentSpell2.gameObject.SetActive(true);
             if (currentSpell2 != null)
             {
                 // Set the spell for the right hand

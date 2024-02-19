@@ -7,38 +7,66 @@ public class Portal : MonoBehaviour
     public bool isOrange;
     public float distance = 0f;
     public float yOffset = 1.0f; // Adjust this value to set how high above the floor the player should spawn
-    private Transform destination;
+    private Portal opposedPortal;
     private bool HasTeleported;
+    public bool HasbeenMove;
 
-    private void Start()
+    
+
+    public Portal()
     {
-        if (isOrange == false)
-        {
-            destination = GameObject.FindGameObjectWithTag("OrangePortal").GetComponent<Transform>();
-        }
-        else
-        {
-            if (GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>() != null)
-            {
-                destination = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
-            }
-           
-        }
+        opposedPortal = null;
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (!HasTeleported)
+        if (HasbeenMove)
         {
-            if (Vector3.Distance(transform.position, other.transform.position) > distance)
+            if (!HasTeleported)
             {
-                HasTeleported = true;
-                destination.GetComponent<Portal>().HasTeleported = true;
-                Vector3 destinationPosition = destination.position + Vector3.up;
-                other.transform.position = destinationPosition;
+                //SetDistination();
+                if (Vector3.Distance(transform.position, other.transform.position) > distance)
+                {
+                    HasTeleported = true;
+                    //Debug.Log("desitnation " + destination.GetComponent<Portal>() == null);
+
+                    
+                    opposedPortal.HasTeleported = true;
+                    Vector3 destinationPosition = opposedPortal.transform.position + Vector3.up;
+                    other.transform.position = destinationPosition;
+                }
             }
         }
         
+        
+    }
+    public Portal getOpposedPortal()
+    {
+        return opposedPortal;
+    }
+    public void setOpposedPortal(Portal p)
+    {
+        opposedPortal = p;
+    }
+    private void SetDistination()
+    {
+        if (isOrange == false)
+        {
+            if (GameObject.FindGameObjectWithTag("OrangePortal") != null)
+            {
+                //
+                //GameObject.FindGameObjectsWithTag("OrangePortal");
+
+            }
+
+        }
+        else
+        {
+            if (GameObject.FindGameObjectWithTag("BluePortal") != null)
+            {
+                //this.opposedPortal = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
+            }
+
+        }
     }
     private void OnTriggerExit(Collider other)
     {

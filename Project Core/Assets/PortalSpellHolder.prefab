@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8688731500462107319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8688731500462107313}
+  - component: {fileID: 8688731500462107314}
+  m_Layer: 0
+  m_Name: PortalSpellHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8688731500462107313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688731500462107319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6557908, y: 2.2922945, z: 0.4371704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8812560453642139070}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8688731500462107314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688731500462107319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5821d1fc5c80bce4098bf51b59f1cd66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: e6a053d500d3d9d41b9d5772a67efecd, type: 2}
+  HasSpellInHand: 0
+  whatisGround:
+    serializedVersion: 2
+    m_Bits: 8
+  whatisWall:
+    serializedVersion: 2
+    m_Bits: 64
+  portalPrefab: {fileID: 170199503671529526, guid: 640e26aa49890ec458e9684c042429c0, type: 3}
+--- !u!1001 &8688731499591703700
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8688731500462107313}
+    m_Modifications:
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 204933888812230967, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+      propertyPath: m_Name
+      value: fireBallSpellHolderVisualAlternate
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+--- !u!4 &8812560453642139070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 204933888812230954, guid: a319a11a589a0b848ae37b3d0fc1ae04, type: 3}
+  m_PrefabInstance: {fileID: 8688731499591703700}
+  m_PrefabAsset: {fileID: 0}

@@ -22,7 +22,7 @@ public class FireBallSpell : Spell
 
         GameObject projectile = Instantiate(spell.spellProjectile.gameObject, firepoint.position, firepoint.rotation);
 
-        projectile.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * spell.spellProjectile.ProjectileSpeed * Player.Instance.SprintSpeed * 0.8f;
+        projectile.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * spell.spellProjectile.GetComponent<Projectile>().ProjectileSpeed * Player.Instance.SprintSpeed * 0.8f;
 
         
     }

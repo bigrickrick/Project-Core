@@ -25,6 +25,7 @@ public class Player : Entity
     private float StartYScale;
     public bool isWallRunning = false;
     public bool isJumping;
+    public bool isClimbing;
     public float basejumpForce;
     public float jumpForce;
     private bool isShooting;
@@ -49,7 +50,8 @@ public class Player : Entity
         sprinting,
         air,
         Croutch,
-        wallrunning
+        wallrunning,
+        climbing
     }
 
     
@@ -210,6 +212,10 @@ public class Player : Entity
                 {
                     state = MovementState.wallrunning;
                 }
+                else if (isClimbing)
+                {
+                    state = MovementState.climbing;
+                }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
                 EntitySpeed = WalkSpeed;
                 break;
@@ -219,6 +225,10 @@ public class Player : Entity
                 {
                     state = MovementState.wallrunning;
                 }
+                else if (isClimbing)
+                {
+                    state = MovementState.climbing;
+                }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
                 EntitySpeed = SprintSpeed;
                 break;
@@ -227,6 +237,10 @@ public class Player : Entity
                 {
                     state = MovementState.wallrunning;
                 }
+                else if (isClimbing)
+                {
+                    state = MovementState.climbing;
+                }
                 rb.drag = DefaultDrag;
                 break;
             case MovementState.Croutch:
@@ -234,12 +248,20 @@ public class Player : Entity
                 {
                     state = MovementState.wallrunning;
                 }
+                else if (isClimbing)
+                {
+                    state = MovementState.climbing;
+                }
                 EntitySpeed = CroutchSpeed;
                 transform.localScale = new Vector3(transform.localScale.x, CroutchYScale, transform.localScale.z);
                 break;
             case MovementState.wallrunning:
                 EntitySpeed = SprintSpeed;
                 rb.drag = groundDrag / 2;
+                break;
+            case MovementState.climbing:
+                EntitySpeed = SprintSpeed;
+                rb.drag = groundDrag;
                 break;
         }
     }
