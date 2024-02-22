@@ -40,6 +40,8 @@ public class Player : Entity
     private float ForceDownIncrease = 0;
     [SerializeField] private Camera mainCamera;
     private Vector3 moveDir;
+
+    [SerializeField] private PlayerAudio playerAudio;
     
     public Transform orientation;
 
@@ -217,6 +219,7 @@ public class Player : Entity
                     state = MovementState.climbing;
                 }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+                playerAudio.PLayPlayerSound(playerAudio.Running);
                 EntitySpeed = WalkSpeed;
                 break;
 
@@ -230,6 +233,7 @@ public class Player : Entity
                     state = MovementState.climbing;
                 }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+                playerAudio.PLayPlayerSound(playerAudio.Running);
                 EntitySpeed = SprintSpeed;
                 break;
             case MovementState.air:

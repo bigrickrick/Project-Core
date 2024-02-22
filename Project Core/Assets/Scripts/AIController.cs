@@ -10,7 +10,7 @@ public class AIController : MonoBehaviour
     public float timeToRotate = 2;
     public float speedWalk = 6;
     public float speedRun = 9;
-
+    
     public float viewRadius = 15;
     public float viewAngle = 90;
     public LayerMask playerMask;

@@ -10,10 +10,11 @@ public class FireBallProjectile : Projectile
     private Vector3 targetPosition;
     public float detectionRange = 20f;
     private float rotationspeed = 50;
-    
+    private float LifeTime = 5;
     public override void ApplyEffect()
     {
-        Instantiate(ExplosionParticles, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+        //Instantiate(ExplosionParticles, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+        Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
 
         ExplosionParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
@@ -29,10 +30,8 @@ public class FireBallProjectile : Projectile
             if (entity != null)
             {
                 entity.DamageRecieve(ProjectileDamage);
+                Debug.Log("Damaging enemy " + ProjectileDamage);
             }
-
-
-
         }
         ApplyEffect();
         Destroy(gameObject);
@@ -42,6 +41,16 @@ public class FireBallProjectile : Projectile
         FindTarget();
         RotateTowardNearestEnemy();
         MoveTowardsTarget();
+        if(LifeTime > 0)
+        {
+            LifeTime -= Time.deltaTime;
+
+        }
+        else
+        {
+            Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
     private void FindTarget()
     {
