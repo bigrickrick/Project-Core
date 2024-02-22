@@ -2096,6 +2096,8 @@ GameObject:
   - component: {fileID: 886276216}
   - component: {fileID: 886276217}
   - component: {fileID: 886276218}
+  - component: {fileID: 886276219}
+  - component: {fileID: 886276220}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2148,15 +2150,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
-  groundDrag: 1.5
+  groundDrag: 1
   player: {fileID: 886276210}
   gameInput: {fileID: 1672911350}
   Leftfirepoint: {fileID: 580181913}
   Rightfirepoint: {fileID: 1891951913}
   spellInventory: {fileID: 393442131}
-  SprintSpeed: 2
-  WalkSpeed: 1
-  CroutchSpeed: 0.4
+  SprintSpeed: 4
+  CroutchSpeed: 0.75
   CroutchYScale: 0.5
   isWallRunning: 0
   isJumping: 0
@@ -2166,7 +2167,9 @@ MonoBehaviour:
   maxSlopeAngle: 40
   InitialAirForceDownTimer: 1
   mainCamera: {fileID: 963194227}
-  playerAudio: {fileID: 0}
+  dashing: 0
+  dashSpeed: 4
+  playerAudio: {fileID: 886276218}
   orientation: {fileID: 1849997659}
   state: 0
 --- !u!54 &886276213
@@ -2234,6 +2237,7 @@ MonoBehaviour:
   slideForce: 80
   slideYScale: 0.5
   slideKey: 306
+  sliding: 0
 --- !u!136 &886276216
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2291,10 +2295,137 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Running: {fileID: 0}
-  Jumping: {fileID: 0}
-  Sliding: {fileID: 0}
-  TakePotionsound: {fileID: 0}
-  audioSource: {fileID: 0}
+  Jumping: {fileID: 8300000, guid: 34dc1162a98bbe64297708723ef5cbef, type: 3}
+  Sliding: {fileID: 8300000, guid: d6a023b03a088c040bd78fc6cfba8f53, type: 3}
+  CroutchWalking: {fileID: 0}
+  TakePotionsound: {fileID: 8300000, guid: e705d14247a862d4c9a6b9dc0ed760ee, type: 3}
+  ClimbingSound: {fileID: 0}
+  audioSource: {fileID: 886276219}
+--- !u!82 &886276219
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886276210}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &886276220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886276210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa7fdeb35cbf994e9d1fe72b3d2d4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1849997659}
+  playerCam: {fileID: 963194228}
+  pm: {fileID: 886276212}
+  dashForce: 100
+  dashUpwardForce: 0
+  maxDashYSpeed: 0
+  dashDuration: 0.1
+  maxdashCharges: 3
+  dashCharges: 0
+  cam: {fileID: 963194229}
+  dashFov: 85
+  useCameraForward: 1
+  allowAllDirections: 1
+  disableGravity: 0
+  resetVel: 1
+  dashCd: 1.5
+  dashKey: 303
 --- !u!114 &951053475 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4627866396685021716, guid: fc2f61966fe95e6489aa0123ecb31b27, type: 3}

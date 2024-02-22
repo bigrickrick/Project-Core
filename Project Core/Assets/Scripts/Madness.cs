@@ -21,7 +21,7 @@ public class Madness : MonoBehaviour
         {
             player.attackspeedModifier += maddnessAttackspeedincrease;
             player.EntitySpeed += maddnessspeedincrease;
-            player.WalkSpeed += maddnessspeedincrease;
+           
             player.SprintSpeed += maddnessspeedincrease;
             player.CroutchSpeed += maddnessspeedincrease;
             maddnesslevel += 1;

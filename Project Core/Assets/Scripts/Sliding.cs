@@ -22,7 +22,7 @@ public class Sliding : MonoBehaviour
 
     float slideJumpTimer = 0.5f;
 
-    private bool sliding;
+    public bool sliding;
 
     private void Start()
     {

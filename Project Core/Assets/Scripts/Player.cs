@@ -19,7 +19,7 @@ public class Player : Entity
     public Transform Rightfirepoint;
     public SpellInventory spellInventory;
     public float SprintSpeed;
-    public float WalkSpeed;
+    
     public float CroutchSpeed;
     public float CroutchYScale;
     private float StartYScale;
@@ -40,7 +40,8 @@ public class Player : Entity
     private float ForceDownIncrease = 0;
     [SerializeField] private Camera mainCamera;
     private Vector3 moveDir;
-
+    public bool dashing;
+    public float dashSpeed;
     [SerializeField] private PlayerAudio playerAudio;
     
     public Transform orientation;
@@ -49,7 +50,7 @@ public class Player : Entity
     public enum MovementState
     {
         walking,
-        sprinting,
+        Dashing,
         air,
         Croutch,
         wallrunning,
@@ -63,7 +64,6 @@ public class Player : Entity
         jumpForce = basejumpForce;
         gameInput.Onjump += GameInput_Onjump;
         gameInput.OnStartSprint += GameInput_OnStartSprint;
-        gameInput.OnStopSprint += GameInput_OnStopSprint;
         gameInput.OnCroutch += GameInput_OnCroutch;
         gameInput.OnstopCroutch += GameInput_OnstopCroutch;
         gameInput.OnShoot += GameInput_OnShoot;
@@ -73,7 +73,7 @@ public class Player : Entity
         gameInput.OnSwitch += GameInput_OnSwitch;
         gameInput.OnSwitchAlternate += GameInput_OnSwitchAlternate;
         StartYScale = transform.localScale.y;
-        EntitySpeed = WalkSpeed;
+        EntitySpeed = SprintSpeed;
         if (Instance == null)
         {
             
@@ -121,7 +121,7 @@ public class Player : Entity
 
     private void GameInput_OnstopCroutch(object sender, System.EventArgs e)
     {
-        state = MovementState.sprinting;
+        state = MovementState.walking;
     }
 
     private void GameInput_OnCroutch(object sender, System.EventArgs e)
@@ -129,14 +129,10 @@ public class Player : Entity
         state = MovementState.Croutch;
     }
 
-    private void GameInput_OnStopSprint(object sender, System.EventArgs e)
-    {
-        state = MovementState.walking;
-    }
 
     private void GameInput_OnStartSprint(object sender, System.EventArgs e)
     {
-        state = MovementState.sprinting;
+        state = MovementState.Dashing;
     }
 
     private void GameInput_Onjump(object sender, System.EventArgs e)
@@ -219,11 +215,11 @@ public class Player : Entity
                     state = MovementState.climbing;
                 }
                 transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
-                playerAudio.PLayPlayerSound(playerAudio.Running);
-                EntitySpeed = WalkSpeed;
+                
+                EntitySpeed = SprintSpeed;
                 break;
 
-            case MovementState.sprinting:
+            case MovementState.Dashing:
                 if (isWallRunning)
                 {
                     state = MovementState.wallrunning;
@@ -232,9 +228,15 @@ public class Player : Entity
                 {
                     state = MovementState.climbing;
                 }
-                transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
-                playerAudio.PLayPlayerSound(playerAudio.Running);
-                EntitySpeed = SprintSpeed;
+                else
+                {
+                    dashing = true;
+                    GetComponent<Dash>().dash();
+                    EntitySpeed = SprintSpeed;
+                    state = MovementState.walking;
+                }
+
+
                 break;
             case MovementState.air:
                 if (isWallRunning)
@@ -267,6 +269,7 @@ public class Player : Entity
                 EntitySpeed = SprintSpeed;
                 rb.drag = groundDrag;
                 break;
+
         }
     }
 

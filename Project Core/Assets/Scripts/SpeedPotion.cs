@@ -11,7 +11,7 @@ public class SpeedPotion : Potion
         Player entity = target.GetComponent<Player>();
         if (entity != null)
         {
-            entity.WalkSpeed += amount;
+            
             entity.SprintSpeed += amount;
             entity.CroutchSpeed += amount;
             entity.attackspeedModifier += amount;
@@ -24,7 +24,7 @@ public class SpeedPotion : Potion
     {
         yield return new WaitForSeconds(durationInSeconds);
 
-        entity.WalkSpeed -= amount; // Subtract the buffed amount
+       
         entity.SprintSpeed -= amount;
         entity.CroutchSpeed -= amount;
         entity.attackspeedModifier -= amount;

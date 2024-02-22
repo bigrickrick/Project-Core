@@ -10,7 +10,6 @@ public class GameInput : MonoBehaviour
     private PlayerInputAction playerInputAction;
     public event EventHandler Onjump;
     public event EventHandler OnStartSprint;
-    public event EventHandler OnStopSprint;
     public event EventHandler OnCroutch;
     public event EventHandler OnstopCroutch;
     public event EventHandler OnShoot;
@@ -26,7 +25,6 @@ public class GameInput : MonoBehaviour
         playerInputAction.Player.Enable();
         playerInputAction.Player.Jump.performed += Jump_performed;
         playerInputAction.Player.Sprint.performed += Sprint_performed;
-        playerInputAction.Player.Sprint.canceled += Sprint_canceled;
         playerInputAction.Player.Croutch.performed += Croutch_performed;
         playerInputAction.Player.Croutch.canceled += Croutch_canceled;
         playerInputAction.Player.Shoot.performed += Shoot_performed;
@@ -79,10 +77,7 @@ public class GameInput : MonoBehaviour
         OnCroutch?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Sprint_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnStopSprint?.Invoke(this, EventArgs.Empty);
-    }
+    
 
     private void Sprint_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
