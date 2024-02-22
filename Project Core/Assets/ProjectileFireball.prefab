@@ -129,8 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileDamage: 40
-  ProjectileSpeed: 100
+  ProjectileSpeed: 200
   ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  detectionRange: 5
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

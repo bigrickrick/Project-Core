@@ -8,4 +8,6 @@ public class SpellStats : ScriptableObject
     public int damage;
     public float castTime;
     public GameObject spellProjectile;
+    public AudioClip SpellOnshootSound;
+
 }

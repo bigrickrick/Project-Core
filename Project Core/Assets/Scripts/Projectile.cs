@@ -8,5 +8,5 @@ public abstract class Projectile : MonoBehaviour
     public float ProjectileSpeed;
 
     public abstract void ApplyEffect();
-    //public abstract void OnTriggerEnter(Collider other);
+    
 }

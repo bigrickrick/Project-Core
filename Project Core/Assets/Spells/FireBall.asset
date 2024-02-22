@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: FireBall
   damage: 10
-  castTime: 2
+  castTime: 0.5
   spellProjectile: {fileID: 8883687443889985489, guid: bf019da9d773d16418765084c13e7b35, type: 3}

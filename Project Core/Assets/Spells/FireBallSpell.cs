@@ -10,7 +10,7 @@ public class FireBallSpell : Spell
         Vector3 destination;
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-
+        PLaySpellSound();
         if(Physics.Raycast(ray, out hit))
         {
             destination = hit.point;
