@@ -17,7 +17,7 @@ public class FireBallSpell : Spell
         }
         else
         {
-            destination = ray.GetPoint(1000);
+            destination = ray.GetPoint(10000);
         }
 
         GameObject projectile = Instantiate(spell.spellProjectile.gameObject, firepoint.position, firepoint.rotation);

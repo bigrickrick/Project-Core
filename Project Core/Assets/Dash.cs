@@ -26,10 +26,10 @@ public class Dash : MonoBehaviour
     public bool allowAllDirections = true;
     public bool disableGravity = false;
     public bool resetVel = true;
-    
+    public float tiltAngle = 20f;
     [Header("Cooldown")]
     public float dashCd;
-    private float dashCdTimer;
+    public float dashCdTimer;
 
    
 
@@ -75,6 +75,10 @@ public class Dash : MonoBehaviour
 
             if (disableGravity)
                 rb.useGravity = false;
+            float tiltAmount = Vector3.Dot(direction.normalized, forwardT.right) * tiltAngle;
+
+            cam.DoTilt(-tiltAmount); 
+
 
             delayedForceToApply = forceToApply;
             Invoke(nameof(DelayedDashForce), 0.025f);
@@ -114,6 +118,7 @@ public class Dash : MonoBehaviour
             rb.useGravity = true;
         
         pm.state = Player.MovementState.walking;
+        cam.DoTilt(0f);
     }
 
     private Vector3 GetDirection(Transform forwardT)

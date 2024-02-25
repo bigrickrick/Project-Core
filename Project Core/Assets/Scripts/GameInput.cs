@@ -18,6 +18,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnStopShootAlternate;
     public event EventHandler OnSwitch;
     public event EventHandler OnSwitchAlternate;
+    public event EventHandler OnPause;
     public void Awake()
     {
         Instance = this;
@@ -33,7 +34,13 @@ public class GameInput : MonoBehaviour
         playerInputAction.Player.ShootAlternate.canceled += ShootAlternate_canceled;
         playerInputAction.Player.Switch.performed += Switch_performed;
         playerInputAction.Player.SwitchAlternate.performed += SwitchAlternate_performed;
+        playerInputAction.Player.PauseMenu.performed += PauseMenu_performed;
         
+    }
+
+    private void PauseMenu_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPause?.Invoke(this, EventArgs.Empty);
     }
 
     private void SwitchAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

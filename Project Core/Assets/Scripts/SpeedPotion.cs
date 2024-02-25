@@ -15,6 +15,7 @@ public class SpeedPotion : Potion
             entity.SprintSpeed += amount;
             entity.CroutchSpeed += amount;
             entity.attackspeedModifier += amount;
+            entity.dashSpeed += amount;
             StartCoroutine(RemoveBuff(entity));
             // Don't destroy the potion here, let it be destroyed on contact.
         }
@@ -28,6 +29,7 @@ public class SpeedPotion : Potion
         entity.SprintSpeed -= amount;
         entity.CroutchSpeed -= amount;
         entity.attackspeedModifier -= amount;
+        entity.dashSpeed -= amount;
 
         // Make sure the potion still exists before attempting to destroy it
         if (gameObject != null)

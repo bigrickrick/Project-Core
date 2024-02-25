@@ -7,35 +7,47 @@ public class FireBallProjectile : Projectile
     public ParticleSystem ExplosionParticles;
 
     private Entity targetToFollow;
-    private Vector3 targetPosition;
+    
     public float detectionRange = 20f;
     private float rotationspeed = 50;
     private float LifeTime = 5;
+    private Camera mainCamera;
+    private Vector3 explosionPoint;
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
     public override void ApplyEffect()
     {
-        //Instantiate(ExplosionParticles, transform.position + Vector3.up * 2.5f, Quaternion.identity);
-        Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
+        // Instantiate explosion particles
+        var explosionInstance = Instantiate(ExplosionParticles, explosionPoint, Quaternion.identity);
+        
+        // Rotate the explosion towards the camera
+        explosionInstance.transform.LookAt(Camera.main.transform);
 
         ExplosionParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision Detected");
-        if (other.CompareTag("Enemy"))
+        Debug.Log("Collision Detected");
+        if (collision.collider.CompareTag("Enemy"))
         {
-
-            Entity entity = other.GetComponent<Entity>();
-            
+            Entity entity = collision.collider.GetComponent<Entity>();
             if (entity != null)
             {
                 entity.DamageRecieve(ProjectileDamage);
                 Debug.Log("Damaging enemy " + ProjectileDamage);
             }
         }
+
+        // Calculate explosion point based on the point of collision
+        explosionPoint = collision.contacts[0].point;
+
         ApplyEffect();
         Destroy(gameObject);
     }
+    
     private void Update()
     {
         FindTarget();

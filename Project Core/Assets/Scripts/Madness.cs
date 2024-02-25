@@ -24,6 +24,7 @@ public class Madness : MonoBehaviour
            
             player.SprintSpeed += maddnessspeedincrease;
             player.CroutchSpeed += maddnessspeedincrease;
+            player.dashSpeed+= maddnessspeedincrease;
             maddnesslevel += 1;
         }
         

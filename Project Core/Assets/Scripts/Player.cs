@@ -43,7 +43,7 @@ public class Player : Entity
     public bool dashing;
     public float dashSpeed;
     [SerializeField] private PlayerAudio playerAudio;
-    
+    [SerializeField] private GameObject PauseMenu;
     public Transform orientation;
 
     public MovementState state;
@@ -72,6 +72,7 @@ public class Player : Entity
         gameInput.OnStopShootAlternate += GameInput_OnStopShootAlternate;
         gameInput.OnSwitch += GameInput_OnSwitch;
         gameInput.OnSwitchAlternate += GameInput_OnSwitchAlternate;
+        gameInput.OnPause += GameInput_OnPause;
         StartYScale = transform.localScale.y;
         EntitySpeed = SprintSpeed;
         if (Instance == null)
@@ -83,6 +84,32 @@ public class Player : Entity
         rb = GetComponent<Rigidbody>();
     }
 
+    private void GameInput_OnPause(object sender, System.EventArgs e)
+    {
+        TogglePause();
+    }
+    private bool isPaused = false;
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            PauseMenu.SetActive(true);
+        }
+        else 
+        {
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PauseMenu.SetActive(false);
+
+        }
+    }
     private void GameInput_OnSwitchAlternate(object sender, System.EventArgs e)
     {
         spellInventory.SpellSwitch(1);

@@ -98,6 +98,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""96d784e2-3d68-473d-81ea-f7d71ae9f410"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchAlternate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c1e4897-66fb-4e0c-b2f8-a5d511bf0d31"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +268,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_ShootAlternate = m_Player.FindAction("ShootAlternate", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
         m_Player_SwitchAlternate = m_Player.FindAction("SwitchAlternate", throwIfNotFound: true);
+        m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +338,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ShootAlternate;
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_SwitchAlternate;
+    private readonly InputAction m_Player_PauseMenu;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -329,6 +351,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @ShootAlternate => m_Wrapper.m_Player_ShootAlternate;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputAction @SwitchAlternate => m_Wrapper.m_Player_SwitchAlternate;
+        public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +385,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @SwitchAlternate.started += instance.OnSwitchAlternate;
             @SwitchAlternate.performed += instance.OnSwitchAlternate;
             @SwitchAlternate.canceled += instance.OnSwitchAlternate;
+            @PauseMenu.started += instance.OnPauseMenu;
+            @PauseMenu.performed += instance.OnPauseMenu;
+            @PauseMenu.canceled += instance.OnPauseMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -390,6 +416,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @SwitchAlternate.started -= instance.OnSwitchAlternate;
             @SwitchAlternate.performed -= instance.OnSwitchAlternate;
             @SwitchAlternate.canceled -= instance.OnSwitchAlternate;
+            @PauseMenu.started -= instance.OnPauseMenu;
+            @PauseMenu.performed -= instance.OnPauseMenu;
+            @PauseMenu.canceled -= instance.OnPauseMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -417,5 +446,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnShootAlternate(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
         void OnSwitchAlternate(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
 }
