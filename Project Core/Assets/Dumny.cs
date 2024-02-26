@@ -7,7 +7,8 @@ using TMPro;
 public class Dumny : Entity
 {
     [SerializeField] private Image Hpbar;
-
+    
+    
     private void LateUpdate()
     {
         UpdateHpbar();
@@ -23,5 +24,5 @@ public class Dumny : Entity
         float hp = (float)HealthPoints / (float)maxHealthPoints;
         Hpbar.fillAmount = hp;
     }
-
+   
 }

@@ -21,8 +21,8 @@ public class FireBallSpell : Spell
         }
 
         GameObject projectile = Instantiate(spell.spellProjectile.gameObject, firepoint.position, firepoint.rotation);
-
-        projectile.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * spell.spellProjectile.GetComponent<Projectile>().ProjectileSpeed * Player.Instance.SprintSpeed * 0.8f;
+        spell.spellProjectile.GetComponent<Projectile>().currentVelocity = (spell.spellProjectile.GetComponent<Projectile>().ProjectileSpeed)/5 * Player.Instance.SprintSpeed;
+        projectile.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * spell.spellProjectile.GetComponent<Projectile>().currentVelocity;
 
         
     }

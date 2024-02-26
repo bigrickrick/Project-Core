@@ -27,10 +27,13 @@ public class DashBar : MonoBehaviour
         {
             if(Playerdash.dashCharges == 2)
             {
+                Bar1.fillAmount = 1f;
+                Bar2.fillAmount = 1f;
                 MoveToBar(Bar3);
             }
             else if(Playerdash.dashCharges == 1)
             {
+                Bar1.fillAmount = 1f;
                 MoveToBar(Bar2);
             }
             else if(Playerdash.dashCharges <= 0)
@@ -48,7 +51,14 @@ public class DashBar : MonoBehaviour
                 MoveToNextBar();
             }
         }
+        else
+        {
+            Bar1.fillAmount = 1f;
+            Bar2.fillAmount = 1f;
+            Bar3.fillAmount = 1f;
+        }
         
+
     }
 
     private void UpdateBarFill(Image bar)

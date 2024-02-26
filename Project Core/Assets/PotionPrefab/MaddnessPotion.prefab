@@ -85,7 +85,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83529266202415432}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -102,8 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b17a08f2a941f54385c0d47329ad66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  madnessbar: {fileID: 0}
+  amount: 0
+  potionvisual: {fileID: 85138867600781140}
   rotationSpeed: 150
+  madnessbar: {fileID: 0}
 --- !u!1001 &83529265986060654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,5 +166,10 @@ PrefabInstance:
 --- !u!4 &83140560148324342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4396443974737560, guid: d4368066c6a114efe9bcb98e6cb1486d, type: 3}
+  m_PrefabInstance: {fileID: 83529265986060654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &85138867600781140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1891390126468666, guid: d4368066c6a114efe9bcb98e6cb1486d, type: 3}
   m_PrefabInstance: {fileID: 83529265986060654}
   m_PrefabAsset: {fileID: 0}

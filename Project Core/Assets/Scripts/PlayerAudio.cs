@@ -4,76 +4,56 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    public AudioClip Running;
-    public AudioClip Jumping;
-    public AudioClip Sliding;
-    public AudioClip CroutchWalking;
-    public AudioClip TakePotionsound;
-    public AudioClip ClimbingSound;
+    public AudioClip runningSound;
+    public AudioClip jumpingSound;
+    public AudioClip slidingSound;
+    public AudioClip crouchingSound;
+    public AudioClip potionSound;
+    public AudioClip climbingSound;
+    public AudioClip DashingSound;
 
-    public AudioSource audioSource;
-    public void PLayPlayerSoundOnce(AudioClip Playersound)
+    private AudioSource audioSource;
+
+    private void Awake()
     {
-        if (Playersound != null)
+        audioSource = GetComponent<AudioSource>();
+    }
+    public void PlayJumpSound()
+    {
+       
+        if (jumpingSound != null)
         {
+            audioSource.PlayOneShot(jumpingSound);
+        }
+    }
+    public void PlayDashSound()
+    {
 
-            audioSource.clip = Playersound;
-            audioSource.Play();
-            Destroy(audioSource, Playersound.length + 0.1f);
+        if (DashingSound != null)
+        {
+            audioSource.PlayOneShot(DashingSound);
         }
     }
     
-    
+
     public void PlaySoundInLoop(AudioClip playerSound)
     {
-        if (playerSound != null)
+        if (playerSound != null && !audioSource.isPlaying)
         {
             audioSource.clip = playerSound;
-            audioSource.loop = true; 
+            audioSource.loop = true;
             audioSource.Play();
         }
     }
+
     public void StopLoopedSound()
     {
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
-            audioSource.loop = false; 
+            audioSource.loop = false;
         }
     }
-    private void Update()
-    {
-        if(Player.Instance.state == Player.MovementState.walking)
-        {
-            
-            PlaySoundInLoop(Running);
-        }
-        else if(Player.Instance.state == Player.MovementState.Croutch && Player.Instance.GetComponent<Sliding>().sliding)
-        {
-            
-            PlaySoundInLoop(Sliding);
-        }
-        else if (Player.Instance.state == Player.MovementState.Croutch)
-        {
 
-            
-            PlaySoundInLoop(CroutchWalking);
-        }
-        else if (Player.Instance.state == Player.MovementState.wallrunning)
-        {
-            
-            PlaySoundInLoop(Running);
-        }
-        else if (Player.Instance.state == Player.MovementState.climbing)
-        {
-            
-            PlaySoundInLoop(ClimbingSound);
-        }
-        if(Player.Instance.isJumping && Player.Instance.isGrounded)
-        {
-            
-            PLayPlayerSoundOnce(Jumping);
-        }
-        StopLoopedSound();
-    }
+    
 }

@@ -160,6 +160,7 @@ public class Player : Entity
     private void GameInput_OnStartSprint(object sender, System.EventArgs e)
     {
         state = MovementState.Dashing;
+        
     }
 
     private void GameInput_Onjump(object sender, System.EventArgs e)
@@ -167,7 +168,7 @@ public class Player : Entity
         if (isGrounded) 
         {
             Jump();
-            isJumping = true;
+            GetComponent<PlayerAudio>().PlayJumpSound();
             state = MovementState.air;
         }
     }

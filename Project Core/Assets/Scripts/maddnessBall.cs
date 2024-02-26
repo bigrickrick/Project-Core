@@ -2,33 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class maddnessBall : MonoBehaviour
+public class maddnessBall : Potion
 {
     public Madness madnessbar;
 
 
-    private void OnCollisionEnter(Collision collision)
+    public override void Apply(GameObject target)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Player player = collision.gameObject.GetComponent<Player>();
-
-            if (player != null)
-            {
-                madnessbar.ApplyMaddness(player);
-                Destroy(gameObject);
-            }
-        }
+        madnessbar.ApplyMaddness(Player.Instance);
     }
-    public float rotationSpeed = 50f;
+    
 
 
     
-    void Update()
-    {
-        
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-    }
+    
 
 
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60cdf3e6a8fa21149b571126672a88d4, type: 3}
+  m_Name: Reflect
+  m_EditorClassIdentifier: 
+  spellName: Reflect
+  damage: 0
+  castTime: 0.5
+  spellProjectile: {fileID: 1295868015770166025, guid: b18b0ecda0b94214ea7cf4b4268fd8e9, type: 3}
+  SpellOnshootSound: {fileID: 0}

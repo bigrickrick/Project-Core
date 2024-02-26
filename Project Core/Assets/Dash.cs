@@ -61,6 +61,7 @@ public class Dash : MonoBehaviour
         {
             dashCharges -= 1;
             cam.Dofov(dashFov);
+            GetComponent<PlayerAudio>().PlayDashSound();
 
             Transform forwardT;
 

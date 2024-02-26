@@ -25,6 +25,7 @@ public class Madness : MonoBehaviour
             player.SprintSpeed += maddnessspeedincrease;
             player.CroutchSpeed += maddnessspeedincrease;
             player.dashSpeed+= maddnessspeedincrease;
+            player.GetComponent<Dash>().dashCd -= 0.25f;
             maddnesslevel += 1;
         }
         

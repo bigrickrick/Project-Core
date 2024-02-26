@@ -13,10 +13,10 @@ public class FireBallProjectile : Projectile
     private float LifeTime = 5;
     private Camera mainCamera;
     private Vector3 explosionPoint;
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
+   
+    public bool Tracking;
+    
+
 
     public override void ApplyEffect()
     {
@@ -31,13 +31,13 @@ public class FireBallProjectile : Projectile
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision Detected");
-        if (collision.collider.CompareTag("Enemy"))
+        if (collision.collider.CompareTag(Target))
         {
             Entity entity = collision.collider.GetComponent<Entity>();
             if (entity != null)
             {
                 entity.DamageRecieve(ProjectileDamage);
-                Debug.Log("Damaging enemy " + ProjectileDamage);
+                Debug.Log("Damaging "+Target+": "+ ProjectileDamage);
             }
         }
 
@@ -50,9 +50,13 @@ public class FireBallProjectile : Projectile
     
     private void Update()
     {
-        FindTarget();
-        RotateTowardNearestEnemy();
-        MoveTowardsTarget();
+        if(Tracking == true)
+        {
+            FindTarget();
+            RotateTowardNearestEnemy();
+            MoveTowardsTarget();
+        }
+        Acceleration();
         if(LifeTime > 0)
         {
             LifeTime -= Time.deltaTime;
@@ -72,7 +76,7 @@ public class FireBallProjectile : Projectile
         
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag(Target))
             {
                 Rigidbody rb = GetComponent<Rigidbody>();
                 if (rb != null)
@@ -104,5 +108,13 @@ public class FireBallProjectile : Projectile
         {
             transform.Translate(Vector3.forward * ProjectileSpeed * Time.deltaTime);
         }
+    }
+    private void Acceleration()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        Vector3 newVelocity = rb.velocity + transform.forward * Time.deltaTime * 2;
+        rb.velocity = Vector3.ClampMagnitude(newVelocity, ProjectileSpeed);
+        
     }
 }
