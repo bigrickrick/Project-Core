@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Reflect : Spell
 {
-    
+    [SerializeField] ReflecProjectile parrySheild;
     public override void ShootSpell(Transform firepoint)
     {
-        Instantiate(spell.spellProjectile, firepoint.position,firepoint.rotation);
+        parrySheild.gameObject.SetActive(true);
     }
 
-    private void Update()
-    {
-        spell.spellProjectile.transform.position = Player.Instance.transform.forward;
-    }
+    
 }
