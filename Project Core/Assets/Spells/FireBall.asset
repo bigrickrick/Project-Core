@@ -16,3 +16,4 @@ MonoBehaviour:
   damage: 10
   castTime: 0.5
   spellProjectile: {fileID: 8883687443889985489, guid: bf019da9d773d16418765084c13e7b35, type: 3}
+  SpellOnshootSound: {fileID: 8300000, guid: 007df2a992791e446b7d2e6a38ddcd7a, type: 3}

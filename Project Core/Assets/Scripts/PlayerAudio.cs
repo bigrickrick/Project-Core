@@ -45,15 +45,31 @@ public class PlayerAudio : MonoBehaviour
             audioSource.Play();
         }
     }
-
-    public void StopLoopedSound()
+    public void PlayRunningSound()
     {
-        if (audioSource.isPlaying)
+        if (runningSound != null)
+        {
+            audioSource.clip = runningSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+    }
+    public void PlayShootSound(AudioClip shootSound)
+    {
+        if(shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound, 0.2f);
+        }
+    }
+    public void StopRunningSound()
+    {
+        if (audioSource.clip == runningSound && audioSource.isPlaying)
         {
             audioSource.Stop();
+            audioSource.clip = null;
             audioSource.loop = false;
         }
     }
 
-    
+
 }

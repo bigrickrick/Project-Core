@@ -54,6 +54,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   portalPrefab: {fileID: 170199503671529526, guid: 640e26aa49890ec458e9684c042429c0, type: 3}
+  state: 0
 --- !u!1001 &8688731499591703700
 PrefabInstance:
   m_ObjectHideFlags: 0

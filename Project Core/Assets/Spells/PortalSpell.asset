@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Portal
   damage: 0
-  castTime: 1
+  castTime: 0.2
   spellProjectile: {fileID: 2445135197432341810, guid: 80d9d0bc43d16824fb44e924cfbf0b25, type: 3}
+  SpellOnshootSound: {fileID: 0}

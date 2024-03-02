@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4458544816239649225}
   - component: {fileID: 170199503671529526}
   - component: {fileID: 3746787953986877978}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Portal Red
   m_TagString: OrangePortal
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6176662830009464599}
   - component: {fileID: 5180916126202743365}
   - component: {fileID: 821268580770385688}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

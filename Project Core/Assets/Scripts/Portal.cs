@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour
     private Portal opposedPortal;
     private bool HasTeleported;
     public bool HasbeenMove;
-
+    public Vector3 Direction;
     
 
     public Portal()
@@ -19,12 +19,30 @@ public class Portal : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        
         if (HasbeenMove)
         {
             if (!HasTeleported)
             {
                 //SetDistination();
-                if (Vector3.Distance(transform.position, other.transform.position) > distance)
+                if (other.CompareTag("Projectile"))
+                {
+                    Projectile projectile = other.GetComponent<Projectile>();
+                    if(projectile != null)
+                    {
+
+                        HasTeleported = true;
+                        opposedPortal.HasTeleported = true;
+
+
+                        Vector3 destinationPosition = opposedPortal.transform.position + Vector3.up;
+                        projectile.transform.position = destinationPosition;
+
+
+
+                    }
+                }
+                else if(Vector3.Distance(transform.position, other.transform.position) > distance)
                 {
                     HasTeleported = true;
                     //Debug.Log("desitnation " + destination.GetComponent<Portal>() == null);
@@ -37,7 +55,13 @@ public class Portal : MonoBehaviour
             }
         }
         
-        
+
+
+
+    }
+    public void ReShootProjectile(Projectile projectile)
+    {
+
     }
     public Portal getOpposedPortal()
     {

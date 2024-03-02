@@ -15,7 +15,7 @@ public class FireBallProjectile : Projectile
     private Vector3 explosionPoint;
    
     public bool Tracking;
-    
+    public LayerMask portalLayer;
 
 
     public override void ApplyEffect()
@@ -30,7 +30,8 @@ public class FireBallProjectile : Projectile
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision Detected");
+       
+        
         if (collision.collider.CompareTag(Target))
         {
             Entity entity = collision.collider.GetComponent<Entity>();
@@ -40,12 +41,21 @@ public class FireBallProjectile : Projectile
                 Debug.Log("Damaging "+Target+": "+ ProjectileDamage);
             }
         }
+        
+        if (portalLayer == (portalLayer | (1 << collision.gameObject.layer)))
+        {
+            
+            return;
+        }
+        else
+        {
+            explosionPoint = collision.contacts[0].point;
 
+            ApplyEffect();
+            Destroy(gameObject);
+        }
         // Calculate explosion point based on the point of collision
-        explosionPoint = collision.contacts[0].point;
-
-        ApplyEffect();
-        Destroy(gameObject);
+        
     }
     
     private void Update()

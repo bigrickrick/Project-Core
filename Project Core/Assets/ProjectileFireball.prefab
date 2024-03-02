@@ -130,10 +130,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileDamage: 40
   ProjectileSpeed: 100
-  ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-  detectionRange: 5
-  Tracking: 1
+  currentVelocity: 200
   whichBullet: 0
+  Target: 
+  ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  detectionRange: 8
+  Tracking: 1
+  portalLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

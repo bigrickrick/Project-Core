@@ -192,7 +192,7 @@ public class WallRunning : MonoBehaviour
         exitingWall = true;
         exitWallTimer = exitWallTime;
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
-
+        Player.Instance.playerAudio.PlayJumpSound();
         Vector3 forceToApply = transform.up * wallJumpForce + wallNormal * wallJumpSideForce;
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);

@@ -3,7 +3,8 @@ guid: 7c54e604367040148b9a1d786e97d9bb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ultraFire: {fileID: 8019724346092166109, guid: 085358ebe3239664bb448276250c1a44, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

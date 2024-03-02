@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Reflect : Spell
 {
-    [SerializeField] ReflecProjectile parrySheild;
+    [SerializeField] private ReflecProjectile parrySheild;
     public override void ShootSpell(Transform firepoint)
     {
         parrySheild.gameObject.SetActive(true);

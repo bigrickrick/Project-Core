@@ -42,7 +42,7 @@ public class Player : Entity
     private Vector3 moveDir;
     public bool dashing;
     public float dashSpeed;
-    [SerializeField] private PlayerAudio playerAudio;
+    public PlayerAudio playerAudio;
     [SerializeField] private GameObject PauseMenu;
     public Transform orientation;
 
@@ -196,7 +196,7 @@ public class Player : Entity
         moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
         moveDir.y = 0;
 
-        
+     
         if (OnSlope())
         {
             rb.AddForce(GetSlopeMoveDirection(moveDir) * EntitySpeed * 10f, ForceMode.Force);
@@ -217,12 +217,13 @@ public class Player : Entity
             if (AirForceDownTimer <= 0)
             {
                 AirForceDownTimer = InitialAirForceDownTimer;
-                ForceDownIncrease += 0.25f;
+                ForceDownIncrease += 0.50f;
             }
         }
-        else if (isGrounded ||isWallRunning)
+        if (!isGrounded ||isWallRunning)
         {
             ForceDownIncrease = 0;
+            
         }
         if(AirForceDownTimer > 0&& !isGrounded)
         {
@@ -275,6 +276,7 @@ public class Player : Entity
                 {
                     state = MovementState.climbing;
                 }
+                //playerAudio.StopLoopedSound();
                 rb.drag = DefaultDrag;
                 break;
             case MovementState.Croutch:
@@ -290,6 +292,7 @@ public class Player : Entity
                 transform.localScale = new Vector3(transform.localScale.x, CroutchYScale, transform.localScale.z);
                 break;
             case MovementState.wallrunning:
+                
                 EntitySpeed = SprintSpeed;
                 rb.drag = groundDrag / 2;
                 break;
@@ -349,6 +352,7 @@ public class Player : Entity
                 {
                     Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
                     spellInventory.currentSpell.ShootSpell(Leftfirepoint);
+                    playerAudio.PlayShootSound(spellInventory.currentSpell.spell.SpellOnshootSound);
                     TimeBetweenShoots = spellInventory.currentSpell.spell.castTime / attackspeedModifier;
                 }
                 else
@@ -377,6 +381,7 @@ public class Player : Entity
                 {
                     Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
                     spellInventory.currentSpell2.ShootSpell(Rightfirepoint);
+                    playerAudio.PlayShootSound(spellInventory.currentSpell2.spell.SpellOnshootSound);
                     TimeBetweenShootsAlternate = spellInventory.currentSpell2.spell.castTime / attackspeedModifier;
                 }
                 else
