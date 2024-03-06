@@ -113,7 +113,7 @@ public class Dash : MonoBehaviour
 
         pm.dashing = false;
 
-        cam.Dofov(85f);
+        cam.Dofov(60f);
 
         if (disableGravity)
             rb.useGravity = true;

@@ -195,7 +195,7 @@ public class Player : Entity
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = orientation.forward * inputVector.y + orientation.right * inputVector.x;
         moveDir.y = 0;
-
+        
      
         if (OnSlope())
         {
@@ -324,7 +324,7 @@ public class Player : Entity
     {
         
         stateHandler();
-        
+        die();
         HandleMovement();
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         

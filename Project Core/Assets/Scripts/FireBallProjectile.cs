@@ -14,8 +14,9 @@ public class FireBallProjectile : Projectile
     private Camera mainCamera;
     private Vector3 explosionPoint;
    
-    public bool Tracking;
+    
     public LayerMask portalLayer;
+    public LayerMask ReflectLayer;
 
 
     public override void ApplyEffect()
@@ -47,6 +48,10 @@ public class FireBallProjectile : Projectile
             
             return;
         }
+        else if (ReflectLayer == (ReflectLayer | (1 << collision.gameObject.layer)))
+        {
+            return;
+        }
         else
         {
             explosionPoint = collision.contacts[0].point;
@@ -54,6 +59,7 @@ public class FireBallProjectile : Projectile
             ApplyEffect();
             Destroy(gameObject);
         }
+        
         // Calculate explosion point based on the point of collision
         
     }
@@ -62,9 +68,11 @@ public class FireBallProjectile : Projectile
     {
         if(Tracking == true)
         {
+            RedoTarget();
             FindTarget();
             RotateTowardNearestEnemy();
             MoveTowardsTarget();
+
         }
         Acceleration();
         if(LifeTime > 0)

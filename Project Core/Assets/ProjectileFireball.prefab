@@ -139,6 +139,9 @@ MonoBehaviour:
   portalLayer:
     serializedVersion: 2
     m_Bits: 4096
+  ReflectLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class UltraFireBall : Projectile
     [SerializeField] private FireBallProjectile fireBall;
     private Vector3 explosionPoint;
     private Entity targetToFollow;
-    public bool Tracking;
+    
     public float detectionRange = 300f;
     private float rotationspeed = 50;
     public override void ApplyEffect()

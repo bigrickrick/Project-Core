@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Reflect
   damage: 0
-  castTime: 3
+  castTime: 1
   spellProjectile: {fileID: 1295868015770166025, guid: b18b0ecda0b94214ea7cf4b4268fd8e9, type: 3}
   SpellOnshootSound: {fileID: 0}

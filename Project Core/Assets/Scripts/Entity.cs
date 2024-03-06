@@ -29,7 +29,7 @@ public abstract class Entity : MonoBehaviour
     {
         maxHealthPoints = HealthPoints;
     }
-    private void die()
+    public void die()
     {
         if (HealthPoints <= 0)
         {

@@ -10,6 +10,7 @@ public abstract class Projectile : MonoBehaviour
     public abstract void ApplyEffect();
     public WhichBullet whichBullet;
     public string Target;
+    public bool Tracking;
     public enum WhichBullet
     {
         Player,
@@ -25,6 +26,28 @@ public abstract class Projectile : MonoBehaviour
         else
         {
             Target = "Player";
+        }
+    }
+    public void RedoTarget()
+    {
+        if (whichBullet == WhichBullet.Player)
+        {
+            Target = "Enemy";
+        }
+        else
+        {
+            Target = "Player";
+        }
+    }
+    public void ChangeBulletOwnershipToOpposite()
+    {
+        if(whichBullet == WhichBullet.Player)
+        {
+            whichBullet = WhichBullet.Enemy;
+        }
+        else
+        {
+            whichBullet = WhichBullet.Player;
         }
     }
 }
