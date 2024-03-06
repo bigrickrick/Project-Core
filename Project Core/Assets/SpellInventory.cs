@@ -17,10 +17,10 @@ public class SpellInventory : MonoBehaviour
 
     
 
-    public void AddSpellToSpellLists(Spell spell)
+    public void AddSpellToSpellLists(Spell spell,Spell spell2)
     {
         SpellList.Add(spell);
-        SpellListAlternate.Add(spell);
+        SpellListAlternate.Add(spell2);
     }
 
     private void Update()

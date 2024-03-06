@@ -31,7 +31,7 @@ public abstract class EnemyBasedScrpt : Entity
     public Projectile EnemyProjectile;
     public Transform firepoint;
     public float baseAttackTimer;
-    private float attackTimer;
+    protected float attackTimer;
     private void Start()
     {
         attackTimer = baseAttackTimer / attackspeedModifier;
@@ -54,7 +54,7 @@ public abstract class EnemyBasedScrpt : Entity
 
 
     }
-    private void UpdateHpbar()
+    public void UpdateHpbar()
     {
         if (Hpbar == null)
         {

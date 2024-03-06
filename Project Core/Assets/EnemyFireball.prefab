@@ -130,7 +130,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileDamage: 40
-  ProjectileSpeed: 50
+  ProjectileSpeed: 80
   currentVelocity: 0
   whichBullet: 1
-  Target: 
+  Target: Player
   Tracking: 0
   ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   detectionRange: 5

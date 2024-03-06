@@ -11,6 +11,7 @@ public abstract class Projectile : MonoBehaviour
     public WhichBullet whichBullet;
     public string Target;
     public bool Tracking;
+    public bool hasalifeTime;
     public enum WhichBullet
     {
         Player,

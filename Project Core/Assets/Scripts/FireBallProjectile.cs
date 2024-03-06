@@ -27,7 +27,7 @@ public class FireBallProjectile : Projectile
         // Rotate the explosion towards the camera
         explosionInstance.transform.LookAt(Camera.main.transform);
 
-        ExplosionParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        Destroy(explosionInstance.gameObject, explosionInstance.main.duration);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -75,16 +75,20 @@ public class FireBallProjectile : Projectile
 
         }
         Acceleration();
-        if(LifeTime > 0)
+        if (hasalifeTime)
         {
-            LifeTime -= Time.deltaTime;
+            if (LifeTime > 0)
+            {
+                LifeTime -= Time.deltaTime;
 
+            }
+            else
+            {
+                Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
-        else
-        {
-            Instantiate(ExplosionParticles, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+        
     }
     private void FindTarget()
     {
