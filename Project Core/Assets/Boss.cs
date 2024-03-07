@@ -84,7 +84,7 @@ public class Boss : EnemyBasedScrpt
             else
             {
                 DashTimer = MaxDashTimer;
-                DashAttack();
+                //DashAttack();
             }
             if (teleportTimer > 0)
             {
