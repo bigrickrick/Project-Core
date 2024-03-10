@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295073250023185141}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.8856676, y: 2.3079152, z: 8.127181}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 7814060921904639691}
   - {fileID: 1378404998481995040}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1295073250023185140
 MonoBehaviour:
@@ -48,12 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 87396f14986c3c94e9ef3beba4d874fd, type: 2}
   HasSpellInHand: 0
+  element: 1
   parrySheild: {fileID: 6490636207827863524}
 --- !u!1001 &1295073249426918410
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1295073250023185143}
     m_Modifications:
     - target: {fileID: 204933888812230954, guid: 45fc4a0ff3ae50840a4f99996929b4cf, type: 3}
@@ -105,6 +107,9 @@ PrefabInstance:
       value: ReflecSpellHolderVisual
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45fc4a0ff3ae50840a4f99996929b4cf, type: 3}
 --- !u!4 &1378404998481995040 stripped
 Transform:
@@ -116,6 +121,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1295073250023185143}
     m_Modifications:
     - target: {fileID: 1295868015770166025, guid: b18b0ecda0b94214ea7cf4b4268fd8e9, type: 3}
@@ -171,6 +177,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18b0ecda0b94214ea7cf4b4268fd8e9, type: 3}
 --- !u!114 &6490636207827863524 stripped
 MonoBehaviour:

@@ -36,6 +36,7 @@ public class FireBallProjectile : Projectile
         if (collision.collider.CompareTag(Target))
         {
             Entity entity = collision.collider.GetComponent<Entity>();
+            
             if (entity != null)
             {
                 entity.DamageRecieve(ProjectileDamage);

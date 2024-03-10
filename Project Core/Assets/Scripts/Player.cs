@@ -45,7 +45,7 @@ public class Player : Entity
     public PlayerAudio playerAudio;
     [SerializeField] private GameObject PauseMenu;
     public Transform orientation;
-
+    
     public MovementState state;
     public enum MovementState
     {
@@ -61,6 +61,7 @@ public class Player : Entity
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        TogglePause();
         jumpForce = basejumpForce;
         gameInput.Onjump += GameInput_Onjump;
         gameInput.OnStartSprint += GameInput_OnStartSprint;
@@ -88,7 +89,7 @@ public class Player : Entity
     {
         TogglePause();
     }
-    private bool isPaused = false;
+    private bool isPaused = true;
     public void TogglePause()
     {
         isPaused = !isPaused;

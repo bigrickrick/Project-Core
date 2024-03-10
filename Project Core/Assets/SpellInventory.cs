@@ -14,7 +14,7 @@ public class SpellInventory : MonoBehaviour
     public int spellNumberAlternate;
     public Transform LeftHand;
     public Transform RightHand;
-
+    public Projectile spellProjectile;
     
 
     public void AddSpellToSpellLists(Spell spell,Spell spell2)
@@ -116,7 +116,32 @@ public class SpellInventory : MonoBehaviour
             Debug.LogError("SpellListAlternate is null or empty.");
         }
     }
+    private void Shootspell(Transform firepoint)
+    {
+        if(currentSpell.element == Spell.SpellElement.Fire && currentSpell2.element == Spell.SpellElement.Fire)
+        {
+            Fireball(firepoint);
+        }
+    }
+    private void Fireball(Transform firepoint)
+    {
+        Vector3 destination;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit))
+        {
+            destination = hit.point;
+        }
+        else
+        {
+            destination = ray.GetPoint(10000);
+        }
+
+        GameObject projectile = Instantiate(spellProjectile.gameObject, firepoint.position, firepoint.rotation);
+        spellProjectile.GetComponent<Projectile>().currentVelocity = (spellProjectile.GetComponent<Projectile>().ProjectileSpeed) * Player.Instance.SprintSpeed;
+        projectile.GetComponent<Rigidbody>().velocity = (destination - firepoint.position).normalized * spellProjectile.GetComponent<Projectile>().currentVelocity;
+    }
     private Spell InstantiateSpell(Spell spellPrefab)
     {
         return Instantiate(spellPrefab);
