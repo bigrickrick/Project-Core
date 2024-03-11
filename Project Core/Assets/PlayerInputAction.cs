@@ -111,7 +111,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""WASDmovement"",
                     ""id"": ""7c66c1cf-267e-4577-b693-b62c54801747"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
