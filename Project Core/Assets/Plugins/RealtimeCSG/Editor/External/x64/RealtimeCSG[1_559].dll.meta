@@ -21,6 +21,10 @@ PluginImporter:
     second:
       enabled: 1
       settings:
+<<<<<<< HEAD
+=======
+        CPU: x86_64
+>>>>>>> Carlos
         DefaultValueInitialized: true
   userData: 
   assetBundleName: 

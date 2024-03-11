@@ -14,9 +14,15 @@ GameObject:
   - component: {fileID: 8883687443889985491}
   - component: {fileID: 426747111298968380}
   - component: {fileID: 2555902988800368086}
+<<<<<<< HEAD
   m_Layer: 8
   m_Name: ProjectileFireball
   m_TagString: Projectile
+=======
+  m_Layer: 0
+  m_Name: ProjectileFireball
+  m_TagString: Untagged
+>>>>>>> Carlos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +58,11 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8883687443889985489}
+<<<<<<< HEAD
   m_Enabled: 0
+=======
+  m_Enabled: 1
+>>>>>>> Carlos
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -115,7 +125,11 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
+<<<<<<< HEAD
   m_CollisionDetection: 1
+=======
+  m_CollisionDetection: 0
+>>>>>>> Carlos
 --- !u!114 &2555902988800368086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa9d49b7b97add46b90115b35cfa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   ProjectileDamage: 40
   ProjectileSpeed: 100
   currentVelocity: 200
@@ -142,6 +157,10 @@ MonoBehaviour:
   ReflectLayer:
     serializedVersion: 2
     m_Bits: 2048
+=======
+  ProjectileDamage: 20
+  ProjectileSpeed: 100
+>>>>>>> Carlos
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.x
+<<<<<<< HEAD
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
@@ -164,6 +184,17 @@ PrefabInstance:
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+=======
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+>>>>>>> Carlos
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,6 +244,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: fireballVisualEffect
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2909474565382054001, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -228,15 +260,31 @@ PrefabInstance:
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.25
+=======
+    - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+>>>>>>> Carlos
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2909474565592641533, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+=======
+>>>>>>> Carlos
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
 --- !u!4 &6017523119569650957 stripped

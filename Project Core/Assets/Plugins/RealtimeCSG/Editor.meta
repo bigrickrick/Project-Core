@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: 1c6e0549cfa34cb438dc26e26ec0d43c
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1464630975
 licenseType: Store
 DefaultImporter:
+=======
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> Carlos
   userData: 
   assetBundleName: 
   assetBundleVariant: 
