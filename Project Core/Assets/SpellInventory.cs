@@ -127,11 +127,11 @@ public class SpellInventory : MonoBehaviour
     {
         Vector3 destination;
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
+        RaycastHit hits;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hits))
         {
-            destination = hit.point;
+            destination = hits.point;
         }
         else
         {
