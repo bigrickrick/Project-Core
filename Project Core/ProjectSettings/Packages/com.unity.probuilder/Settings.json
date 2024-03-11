@@ -49,11 +49,7 @@
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "editor.toolbarIconGUI",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":true}"
-=======
-                "value": "{\"m_Value\":false}"
->>>>>>> Carlos
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -131,7 +127,6 @@
                 "value": "{\"m_Value\":true}"
             },
             {
-<<<<<<< HEAD
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "FillHole.selectEntirePath",
                 "value": "{\"m_Value\":true}"
@@ -177,8 +172,6 @@
                 "value": "{\"m_Value\":false}"
             },
             {
-=======
->>>>>>> Carlos
                 "type": "UnityEngine.ProBuilder.RectSelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.dragSelectRectMode",
                 "value": "{\"m_Value\":0}"
@@ -186,11 +179,7 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectionModifierBehavior, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.rectSelectModifier",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":1}"
-=======
-                "value": "{\"m_Value\":2}"
->>>>>>> Carlos
             },
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -200,20 +189,12 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.lastMeshSelectMode",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":8}"
-=======
-                "value": "{\"m_Value\":2}"
->>>>>>> Carlos
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":6}"
-=======
-                "value": "{\"m_Value\":2}"
->>>>>>> Carlos
             },
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -228,25 +209,17 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastPivotPosition",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":{\"x\":-0.0000015438631635333878,\"y\":0.000003488323727651732,\"z\":0.0}}"
-=======
-                "value": "{\"m_Value\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
->>>>>>> Carlos
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize",
-<<<<<<< HEAD
                 "value": "{\"m_Value\":{\"x\":2.3662660121917726,\"y\":-93.67913055419922,\"z\":1.293640375137329}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "MoveElements.s_Translation",
                 "value": "{\"m_Value\":{\"x\":0.0,\"y\":1.0,\"z\":0.0}}"
-=======
-                "value": "{\"m_Value\":{\"x\":107.115234375,\"y\":19.921939849853517,\"z\":0.978668212890625}}"
->>>>>>> Carlos
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -289,14 +262,11 @@
                 "value": "{}"
             },
             {
-<<<<<<< HEAD
                 "type": "UnityEngine.ProBuilder.Shapes.Shape, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.Plane",
                 "value": "{}"
             },
             {
-=======
->>>>>>> Carlos
                 "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "uv.uvEditorGridSnapIncrement",
                 "value": "{\"m_Value\":0.125}"
@@ -307,7 +277,6 @@
                 "value": "{\"m_Value\":0.20000000298023225}"
             },
             {
-<<<<<<< HEAD
                 "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ExtrudeFaces.distance",
                 "value": "{\"m_Value\":0.5}"
@@ -331,11 +300,6 @@
                 "type": "UnityEditor.ProBuilder.Actions.Export+ExportFormat, Unity.ProBuilder.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "export.format",
                 "value": "{\"m_Value\":0}"
-=======
-                "type": "UnityEditor.ProBuilder.Actions.MirrorObjects+MirrorSettings, Unity.ProBuilder.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "MirrorObjects.mirrorAxes",
-                "value": "{\"m_Value\":1}"
->>>>>>> Carlos
             }
         ]
     }

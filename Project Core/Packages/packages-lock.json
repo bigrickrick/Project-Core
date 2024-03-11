@@ -46,11 +46,7 @@
     },
     "com.unity.ide.rider": {
       "version": "3.0.24",
-<<<<<<< HEAD
       "depth": 0,
-=======
-      "depth": 1,
->>>>>>> Carlos
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -111,22 +107,14 @@
     },
     "com.unity.settings-manager": {
       "version": "2.0.1",
-<<<<<<< HEAD
       "depth": 1,
-=======
-      "depth": 2,
->>>>>>> Carlos
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
       "version": "1.1.33",
-<<<<<<< HEAD
       "depth": 0,
-=======
-      "depth": 1,
->>>>>>> Carlos
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6",
