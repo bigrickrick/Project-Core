@@ -15,8 +15,8 @@ public class Player : Entity
     
     public static Player Instance { get; private set; }
     [SerializeField] private GameInput gameInput;
-    public Transform Leftfirepoint;
-    public Transform Rightfirepoint;
+    public Transform firePoint;
+   
     public SpellInventory spellInventory;
     public float SprintSpeed;
     
@@ -343,18 +343,18 @@ public class Player : Entity
 
         }
         Debug.Log(isWallRunning);
-        if (isShooting)
+        if (isShooting || isShootingAlternate)
         {
-            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
+            //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
 
             if (TimeBetweenShoots <= 0)
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
-                    Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
-                    spellInventory.currentSpell.ShootSpell(Leftfirepoint);
-                    playerAudio.PlayShootSound(spellInventory.currentSpell.spell.SpellOnshootSound);
-                    TimeBetweenShoots = spellInventory.currentSpell.spell.castTime / attackspeedModifier;
+                    //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
+                    spellInventory.currentspell.ShootSpell(firePoint);
+                    playerAudio.PlayShootSound(spellInventory.currentspell.spell.SpellOnshootSound);
+                    TimeBetweenShoots = spellInventory.currentspell.spell.castTime / attackspeedModifier;
                 }
                 else
                 {
@@ -364,47 +364,13 @@ public class Player : Entity
         }
         else
         {
-            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
+            //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
         }
+
 
         
-        if (!isShooting || TimeBetweenShoots > 0)
-        {
-            Leftfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
-        }
-        if (isShootingAlternate)
-        {
-            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
-
-            if (TimeBetweenShootsAlternate <= 0)
-            {
-                if (spellInventory.SpellList.Count > 0)
-                {
-                    Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
-                    spellInventory.currentSpell2.ShootSpell(Rightfirepoint);
-                    playerAudio.PlayShootSound(spellInventory.currentSpell2.spell.SpellOnshootSound);
-                    TimeBetweenShootsAlternate = spellInventory.currentSpell2.spell.castTime / attackspeedModifier;
-                }
-                else
-                {
-                    Debug.Log("You don't have a spell equipped");
-                }
-            }
-        }
-        else
-        {
-            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
-        }
-
         
-        if (!isShootingAlternate || TimeBetweenShootsAlternate > 0)
-        {
-            Rightfirepoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
-        }
-        if (TimeBetweenShootsAlternate > 0)
-        {
-            TimeBetweenShootsAlternate -= Time.deltaTime;
-        }
+        
         if (TimeBetweenShoots > 0)
         {
             TimeBetweenShoots -= Time.deltaTime;

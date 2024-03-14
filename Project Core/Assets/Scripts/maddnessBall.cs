@@ -5,13 +5,13 @@ using UnityEngine;
 public class maddnessBall : Potion
 {
     public Madness madnessbar;
-    public Spell spellTogive1;
-    public Spell spellTogive2;
+    public Element elementTogiveleft;
+    public Element elementTogiveright;
 
     public override void Apply(GameObject target)
     {
         madnessbar.ApplyMaddness(Player.Instance);
-        Player.Instance.spellInventory.AddSpellToSpellLists(spellTogive1,spellTogive2);
+        Player.Instance.spellInventory.AddSpellToSpellLists(elementTogiveleft,elementTogiveright);
     }
     
 

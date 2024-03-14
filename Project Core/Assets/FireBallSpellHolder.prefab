@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4627866396685021715}
-  - component: {fileID: 4627866396685021716}
+  - component: {fileID: 3127320581616706090}
   m_Layer: 0
   m_Name: FireBallSpellHolder
   m_TagString: Untagged
@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4627866396685021717}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6557908, y: 2.2922945, z: 0.4371704}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,9 +32,8 @@ Transform:
   m_Children:
   - {fileID: 4819249344036408132}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4627866396685021716
+--- !u!114 &3127320581616706090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,16 +42,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4627866396685021717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ad3a85ce51ea24b876cc8e37501ba3, type: 3}
+  m_Script: {fileID: 11500000, guid: 266a4699907cabe49b5379d7f86067c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: 11400000, guid: 06c49737ff212db418d959af06106afc, type: 2}
-  HasSpellInHand: 0
 --- !u!1001 &4627866395273896558
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4627866396685021715}
     m_Modifications:
     - target: {fileID: 204933888812230954, guid: 31486c30aae0616418014d29b37ea30c, type: 3}
@@ -103,6 +102,9 @@ PrefabInstance:
       value: fireBallSpellHolderVisual
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31486c30aae0616418014d29b37ea30c, type: 3}
 --- !u!4 &4819249344036408132 stripped
 Transform:

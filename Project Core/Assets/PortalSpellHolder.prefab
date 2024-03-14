@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688731500462107313}
-  - component: {fileID: 8688731500462107314}
+  - component: {fileID: 7035817122410819292}
   m_Layer: 0
   m_Name: PortalSpellHolder
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8812560453642139070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8688731500462107314
+--- !u!114 &7035817122410819292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,20 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8688731500462107319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5821d1fc5c80bce4098bf51b59f1cd66, type: 3}
+  m_Script: {fileID: 11500000, guid: 266a4699907cabe49b5379d7f86067c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: 11400000, guid: e6a053d500d3d9d41b9d5772a67efecd, type: 2}
-  HasSpellInHand: 0
   element: 1
-  whatisGround:
-    serializedVersion: 2
-    m_Bits: 8
-  whatisWall:
-    serializedVersion: 2
-    m_Bits: 64
-  portalPrefab: {fileID: 170199503671529526, guid: 640e26aa49890ec458e9684c042429c0, type: 3}
-  state: 0
 --- !u!1001 &8688731499591703700
 PrefabInstance:
   m_ObjectHideFlags: 0
