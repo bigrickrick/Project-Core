@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4969582349685319669}
   - component: {fileID: 8925408403526329753}
   - component: {fileID: 4358270951569972760}
+  - component: {fileID: 8760188389215088026}
   m_Layer: 8
   m_Name: ProjectileBlackHole
   m_TagString: Projectile
@@ -48,14 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileDamage: 0
-  ProjectileSpeed: 25
-  currentVelocity: 10
+  ProjectileSpeed: 20
+  currentVelocity: 25
   whichBullet: 0
   Target: Enemy
   Tracking: 0
   hasalifeTime: 1
-  AttractionRange: 150
-  AttractionForce: 60
+  AttractionRange: 15
+  AttractionForce: 100
 --- !u!54 &8925408403526329753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -81,7 +82,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &4358270951569972760
 SphereCollider:
@@ -102,7 +103,28 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &8760188389215088026
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238115079052152006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1498942652197511242
 PrefabInstance:
