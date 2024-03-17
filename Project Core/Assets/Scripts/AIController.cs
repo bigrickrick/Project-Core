@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
+    public Entity entity;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
-    public float speedWalk = 6;
-    public float speedRun = 9;
+    
     
     public float viewRadius = 15;
     public float viewAngle = 90;
@@ -46,23 +46,32 @@ public class AIController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         navMeshAgent.isStopped = false;
-        navMeshAgent.speed = speedWalk;
+        navMeshAgent.speed = entity.EntitySpeed;
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         EnviromentView();
-
-        if (!m_IsPatrol)
+        if (!GetComponent<Modifiers>().IsIncapacited)
         {
-            Chasing();
+            GetComponent<NavMeshAgent>().enabled = true;
+            if (!m_IsPatrol)
+            {
+                Chasing();
+            }
+            else
+            {
+                Patroling();
+            }
         }
         else
         {
-            Patroling();
+            GetComponent<NavMeshAgent>().enabled = false;
         }
+        
     }
 
     private void Chasing()
@@ -72,7 +81,7 @@ public class AIController : MonoBehaviour
 
         if (!m_CaughtPlayer)
         {
-            Move(speedRun);
+            Move(entity.EntitySpeed*2);
             navMeshAgent.SetDestination(m_PlayerPosition);
         }
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
@@ -81,7 +90,7 @@ public class AIController : MonoBehaviour
             {
                 m_IsPatrol = true;
                 m_PlayerNear = false;
-                Move(speedRun);
+                Move(entity.EntitySpeed*2);
                 m_TimeToRotate = timeToRotate;
                 m_WaitTime = startWaitTime;
                 navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
@@ -103,7 +112,7 @@ public class AIController : MonoBehaviour
         {
             if (m_TimeToRotate <= 0)
             {
-                Move(speedWalk);
+                Move(entity.EntitySpeed);
                 LookingPlayer(playerLastPosition);
             }
             else
@@ -122,7 +131,7 @@ public class AIController : MonoBehaviour
                 if (m_WaitTime <= 0)
                 {
                     NextPoint();
-                    Move(speedWalk);
+                    Move(entity.EntitySpeed);
                     m_WaitTime = startWaitTime;
                 }
                 else
@@ -165,7 +174,7 @@ public class AIController : MonoBehaviour
             if (m_WaitTime <= 0)
             {
                 m_PlayerNear = false;
-                Move(speedWalk);
+                Move(entity.EntitySpeed);
                 navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
                 m_WaitTime = startWaitTime;
                 m_TimeToRotate = timeToRotate;

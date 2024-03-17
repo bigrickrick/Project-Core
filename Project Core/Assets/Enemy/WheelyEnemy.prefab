@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4667854252810275923}
   - component: {fileID: 335421804481034643}
   - component: {fileID: 6799788207643083733}
+  - component: {fileID: 367227477386293668}
   m_Layer: 13
   m_Name: WheelyEnemy
   m_TagString: Enemy
@@ -124,10 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 4667854252810275923}
+  entity: {fileID: 6799788207643083733}
   startWaitTime: 0.1
   timeToRotate: 0.5
-  speedWalk: 24
-  speedRun: 36
   viewRadius: 360
   viewAngle: 360
   playerMask:
@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508b17c507680a40829e62a29106984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 200
-  maxHealthPoints: 200
+  HealthPoints: 80
+  maxHealthPoints: 80
   entity: {fileID: 150709946189787357}
-  EntitySpeed: 10
+  EntitySpeed: 4
   attackspeedModifier: 1
   gettinghitSoundEffect: {fileID: 0}
   attackRange: 100
@@ -165,7 +165,23 @@ MonoBehaviour:
   Hpbar: {fileID: 1057448214130901352}
   EnemyProjectile: {fileID: 2555902988800368086, guid: 46333da7070290d4391c992bcf188186, type: 3}
   firepoint: {fileID: 8894548533921321495}
-  baseAttackTimer: 1
+  baseAttackTimer: 2
+--- !u!114 &367227477386293668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150709946189787357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 1
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1 &2425291725965375486
 GameObject:
   m_ObjectHideFlags: 0

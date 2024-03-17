@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 4431380423210570065}
   - component: {fileID: 7108690120098112167}
   - component: {fileID: 8365364523670808060}
+  - component: {fileID: 7176927467018944741}
   m_Layer: 13
   m_Name: BetaBoss
   m_TagString: Enemy
@@ -1363,10 +1364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 4431380423210570065}
+  entity: {fileID: 8365364523670808060}
   startWaitTime: 0.1
   timeToRotate: 0.5
-  speedWalk: 30
-  speedRun: 40
   viewRadius: 360
   viewAngle: 360
   playerMask:
@@ -1392,8 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655652332bc232046a70b7e6b86f28d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 1000
-  maxHealthPoints: 1000
+  HealthPoints: 500
+  maxHealthPoints: 5
   entity: {fileID: 8855986881569679211}
   EntitySpeed: 1
   attackspeedModifier: 1
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   Hpbar: {fileID: 6906579482295573324}
   EnemyProjectile: {fileID: 7775737071523524590, guid: 5a3f8a3fa89096a4c887a084d6d3b785, type: 3}
   firepoint: {fileID: 7277862784606507889}
-  baseAttackTimer: 0.5
+  baseAttackTimer: 1
   teleportAttackMaxTimer: 4
   teleportTimer: 4
   SpecialAttackMaxTimer: 3
@@ -1420,6 +1420,22 @@ MonoBehaviour:
   specialAttackPrefab: {fileID: 2555902988800368086, guid: 46333da7070290d4391c992bcf188186, type: 3}
   SpecialFirepoint: {fileID: 6379649315333663214}
   maxAngle: 30
+--- !u!114 &7176927467018944741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855986881569679211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 0
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1001 &1466779291062869936
 PrefabInstance:
   m_ObjectHideFlags: 0

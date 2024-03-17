@@ -36,7 +36,7 @@ public abstract class EnemyBasedScrpt : Entity
     {
         attackTimer = baseAttackTimer / attackspeedModifier;
     }
-    private void LateUpdate()
+    private void Update()
     {
         UpdateHpbar();
         if (CheckifPlayerInAttackRange())
@@ -51,6 +51,7 @@ public abstract class EnemyBasedScrpt : Entity
                 Attack();
             }
         }
+        die();
 
 
     }

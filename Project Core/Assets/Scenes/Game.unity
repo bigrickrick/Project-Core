@@ -2722,7 +2722,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4189,6 +4189,10 @@ PrefabInstance:
     - target: {fileID: 335421804481034643, guid: 4d4e8d10b7776f44d95774c8a166d2b0, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367227477386293668, guid: 4d4e8d10b7776f44d95774c8a166d2b0, type: 3}
+      propertyPath: IsIncapacited
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4667854252810275923, guid: 4d4e8d10b7776f44d95774c8a166d2b0, type: 3}
       propertyPath: m_Enabled
@@ -16067,10 +16071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 1097087255}
+  entity: {fileID: 0}
   startWaitTime: 4
   timeToRotate: 2
-  speedWalk: 6
-  speedRun: 9
   viewRadius: 15
   viewAngle: 90
   playerMask:
@@ -24672,6 +24675,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ca3619d1f2de04b8230471eb7554e2, type: 3}
+--- !u!1 &1758696989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7041948218774454191, guid: 061649a2977655e4ead06cff04330a44, type: 3}
+  m_PrefabInstance: {fileID: 6372644668937434583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1758696994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758696989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 1
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!43 &1782699306
 Mesh:
   m_ObjectHideFlags: 0
@@ -29836,7 +29860,10 @@ PrefabInstance:
     - {fileID: 4485076329710413909, guid: 061649a2977655e4ead06cff04330a44, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7041948218774454191, guid: 061649a2977655e4ead06cff04330a44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758696994}
   m_SourcePrefab: {fileID: 100100000, guid: 061649a2977655e4ead06cff04330a44, type: 3}
 --- !u!1001 &6610666222406741085
 PrefabInstance:
