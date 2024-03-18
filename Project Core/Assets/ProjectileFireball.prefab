@@ -151,9 +151,9 @@ MonoBehaviour:
   ProjectileSpeed: 100
   currentVelocity: 200
   whichBullet: 0
-  Target: 
-  Tracking: 0
-  hasalifeTime: 0
+  Target: Enemy
+  Tracking: 1
+  hasalifeTime: 1
   ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   detectionRange: 8
   portalLayer:

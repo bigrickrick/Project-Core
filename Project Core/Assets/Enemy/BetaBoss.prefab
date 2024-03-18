@@ -1404,7 +1404,7 @@ MonoBehaviour:
   Hpbar: {fileID: 6906579482295573324}
   EnemyProjectile: {fileID: 7775737071523524590, guid: 5a3f8a3fa89096a4c887a084d6d3b785, type: 3}
   firepoint: {fileID: 7277862784606507889}
-  baseAttackTimer: 1
+  baseAttackTimer: 1.5
   teleportAttackMaxTimer: 4
   teleportTimer: 4
   SpecialAttackMaxTimer: 3

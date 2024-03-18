@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: BlackHole
   damage: 1
-  castTime: 1
+  castTime: 3
   spellProjectile: {fileID: 1238115079052152006, guid: 2e710ad743f20b044a7d31d934521cad, type: 3}
   SpellOnshootSound: {fileID: 0}

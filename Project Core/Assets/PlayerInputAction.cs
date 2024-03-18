@@ -73,7 +73,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ShootAlternate"",
+                    ""name"": ""Parry"",
                     ""type"": ""Button"",
                     ""id"": ""007c4e87-ad4d-4d01-a6f5-9823a8c55508"",
                     ""expectedControlType"": ""Button"",
@@ -216,7 +216,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ShootAlternate"",
+                    ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -265,7 +265,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Croutch = m_Player.FindAction("Croutch", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        m_Player_ShootAlternate = m_Player.FindAction("ShootAlternate", throwIfNotFound: true);
+        m_Player_Parry = m_Player.FindAction("Parry", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
         m_Player_SwitchAlternate = m_Player.FindAction("SwitchAlternate", throwIfNotFound: true);
         m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
@@ -335,7 +335,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Croutch;
     private readonly InputAction m_Player_Shoot;
-    private readonly InputAction m_Player_ShootAlternate;
+    private readonly InputAction m_Player_Parry;
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_SwitchAlternate;
     private readonly InputAction m_Player_PauseMenu;
@@ -348,7 +348,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Croutch => m_Wrapper.m_Player_Croutch;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-        public InputAction @ShootAlternate => m_Wrapper.m_Player_ShootAlternate;
+        public InputAction @Parry => m_Wrapper.m_Player_Parry;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputAction @SwitchAlternate => m_Wrapper.m_Player_SwitchAlternate;
         public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
@@ -376,9 +376,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
-            @ShootAlternate.started += instance.OnShootAlternate;
-            @ShootAlternate.performed += instance.OnShootAlternate;
-            @ShootAlternate.canceled += instance.OnShootAlternate;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
             @Switch.started += instance.OnSwitch;
             @Switch.performed += instance.OnSwitch;
             @Switch.canceled += instance.OnSwitch;
@@ -407,9 +407,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
-            @ShootAlternate.started -= instance.OnShootAlternate;
-            @ShootAlternate.performed -= instance.OnShootAlternate;
-            @ShootAlternate.canceled -= instance.OnShootAlternate;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
             @Switch.started -= instance.OnSwitch;
             @Switch.performed -= instance.OnSwitch;
             @Switch.canceled -= instance.OnSwitch;
@@ -443,7 +443,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnCroutch(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnShootAlternate(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
         void OnSwitchAlternate(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);

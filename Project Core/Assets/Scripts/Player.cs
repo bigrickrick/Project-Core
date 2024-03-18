@@ -45,7 +45,7 @@ public class Player : Entity
     public PlayerAudio playerAudio;
     [SerializeField] private GameObject PauseMenu;
     public Transform orientation;
-    
+    public bool IsParrying;
     public MovementState state;
     public enum MovementState
     {
@@ -69,8 +69,7 @@ public class Player : Entity
         gameInput.OnstopCroutch += GameInput_OnstopCroutch;
         gameInput.OnShoot += GameInput_OnShoot;
         gameInput.OnStopShoot += GameInput_OnStopShoot;
-        gameInput.OnShootAlternate += GameInput_OnShootAlternate;
-        gameInput.OnStopShootAlternate += GameInput_OnStopShootAlternate;
+        gameInput.OnParry += GameInput_OnParry;
         gameInput.OnSwitch += GameInput_OnSwitch;
         gameInput.OnSwitchAlternate += GameInput_OnSwitchAlternate;
         gameInput.OnPause += GameInput_OnPause;
@@ -83,6 +82,11 @@ public class Player : Entity
         }
 
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void GameInput_OnParry(object sender, System.EventArgs e)
+    {
+        IsParrying = true;
     }
 
     private void GameInput_OnPause(object sender, System.EventArgs e)
@@ -122,17 +126,7 @@ public class Player : Entity
     }
     
 
-    private void GameInput_OnStopShootAlternate(object sender, System.EventArgs e)
-    {
-        isShootingAlternate = false;
-    }
-
-    private void GameInput_OnShootAlternate(object sender, System.EventArgs e)
-    {
-
-        isShootingAlternate = true;
-        Debug.Log("shoot alternate " + isShootingAlternate);
-    }
+    
 
     private void GameInput_OnStopShoot(object sender, System.EventArgs e)
     {
@@ -345,13 +339,13 @@ public class Player : Entity
         Debug.Log(isWallRunning);
         if (isShooting || isShootingAlternate)
         {
-            //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StartIncreasingParticles();
+            
 
             if (TimeBetweenShoots <= 0)
             {
                 if (spellInventory.SpellList.Count > 0)
                 {
-                    //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StopAdjustingParticles();
+                   
                     spellInventory.currentspell.ShootSpell(firePoint);
                     playerAudio.PlayShootSound(spellInventory.currentspell.spell.SpellOnshootSound);
                     TimeBetweenShoots = spellInventory.currentspell.spell.castTime / attackspeedModifier;
@@ -364,7 +358,7 @@ public class Player : Entity
         }
         else
         {
-            //firePoint.GetComponentInChildren<SpellHandVisualEffect>().StartDecreasingParticles();
+            
         }
 
 

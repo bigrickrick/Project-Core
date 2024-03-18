@@ -146,4 +146,9 @@ public class FireBallProjectile : Projectile
         Vector3 newVelocity = rb.velocity + transform.forward * Time.deltaTime * 2;
         rb.velocity = Vector3.ClampMagnitude(newVelocity, ProjectileSpeed);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 }

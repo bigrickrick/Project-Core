@@ -19,20 +19,20 @@ public class BlackHole : MonoBehaviour
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, AttractionRange, attractionLayer);
-
+        
         foreach (Collider col in colliders)
         {
-            
             Rigidbody rb = col.GetComponent<Rigidbody>();
 
             if (rb != null)
             {
-                
+
                 Vector3 direction = transform.position - col.transform.position;
 
-                
+
                 rb.AddForce(direction.normalized * AttractionForce * Time.fixedDeltaTime);
             }
+
         }
 
         

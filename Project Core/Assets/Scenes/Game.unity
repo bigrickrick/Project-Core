@@ -5958,6 +5958,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede463351f68de14982a25de3ea1f747, type: 3}
+--- !u!1 &387103134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387103135}
+  m_Layer: 0
+  m_Name: ParryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &387103135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387103134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.735, y: -0.663, z: 1.234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 816041820367175641}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405957868
 GameObject:
   m_ObjectHideFlags: 0
@@ -29244,6 +29275,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 816041819327460720, guid: 00233f4ef7c59fe49a2a9c1f1c580261, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1870667686}
+    - targetCorrespondingSourceObject: {fileID: 816041819327460720, guid: 00233f4ef7c59fe49a2a9c1f1c580261, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 387103135}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00233f4ef7c59fe49a2a9c1f1c580261, type: 3}
 --- !u!4 &816041820367175641 stripped
@@ -29328,6 +29362,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: ParryPoint
+      value: 
+      objectReference: {fileID: 387103135}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: ParryTimer
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: ParrySoundeffect
+      value: 
+      objectReference: {fileID: 8300000, guid: c22f8f5f803e90b4f8caaedc4f226de3, type: 3}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: ParrySurfaceArea
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: maxParryTimeDuration
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: waittimerfornextparry
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: MaxWaitBeforeNextParry
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8597540236088075526, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: successfullParticulesParry
+      value: 
+      objectReference: {fileID: 5080896066147613967, guid: 2883d1d0916f7d240a2dd07869ec24cc, type: 3}
+    - target: {fileID: 627288239163038211, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
+      propertyPath: groundslamsoundeffect
+      value: 
+      objectReference: {fileID: 8300000, guid: e4a3118282ee94143a9480189f713b64, type: 3}
     - target: {fileID: 1457706481272026448, guid: ec6ab0f008c5d8d4e9c591dfc21e3047, type: 3}
       propertyPath: cam
       value: 
@@ -29641,6 +29711,10 @@ PrefabInstance:
     - target: {fileID: 8365364523670808060, guid: 94661d419c710c24e874ddfb9e4b7a62, type: 3}
       propertyPath: maxAngle
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365364523670808060, guid: 94661d419c710c24e874ddfb9e4b7a62, type: 3}
+      propertyPath: baseAttackTimer
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8365364523670808060, guid: 94661d419c710c24e874ddfb9e4b7a62, type: 3}
       propertyPath: MaxSpecialAttackProjectile

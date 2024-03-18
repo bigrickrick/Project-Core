@@ -14,11 +14,10 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnstopCroutch;
     public event EventHandler OnShoot;
     public event EventHandler OnStopShoot;
-    public event EventHandler OnShootAlternate;
-    public event EventHandler OnStopShootAlternate;
     public event EventHandler OnSwitch;
     public event EventHandler OnSwitchAlternate;
     public event EventHandler OnPause;
+    public event EventHandler OnParry;
     public void Awake()
     {
         Instance = this;
@@ -30,12 +29,16 @@ public class GameInput : MonoBehaviour
         playerInputAction.Player.Croutch.canceled += Croutch_canceled;
         playerInputAction.Player.Shoot.performed += Shoot_performed;
         playerInputAction.Player.Shoot.canceled += Shoot_canceled;
-        playerInputAction.Player.ShootAlternate.performed += ShootAlternate_performed;
-        playerInputAction.Player.ShootAlternate.canceled += ShootAlternate_canceled;
+        playerInputAction.Player.Parry.performed += Parry_performed;
         playerInputAction.Player.Switch.performed += Switch_performed;
         playerInputAction.Player.SwitchAlternate.performed += SwitchAlternate_performed;
         playerInputAction.Player.PauseMenu.performed += PauseMenu_performed;
         
+    }
+
+    private void Parry_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnParry?.Invoke(this, EventArgs.Empty);
     }
 
     private void PauseMenu_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -51,16 +54,6 @@ public class GameInput : MonoBehaviour
     private void Switch_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnSwitch?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void ShootAlternate_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnStopShootAlternate?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void ShootAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnShootAlternate?.Invoke(this, EventArgs.Empty);
     }
 
     private void Shoot_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)

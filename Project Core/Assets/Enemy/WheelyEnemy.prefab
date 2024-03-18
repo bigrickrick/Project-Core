@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanBeIncapacited: 1
+  CanBeIncapacited: 0
   CanBedamage: 1
   IsIncapacited: 0
   IsRaged: 0
