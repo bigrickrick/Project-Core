@@ -49,11 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileDamage: 20
-  ProjectileSpeed: 70
-  currentVelocity: 0
+  ProjectileSpeed: 100
+  currentVelocity: 90
   whichBullet: 1
   Target: Player
   Tracking: 0
+  hasalifeTime: 0
   projectile: {fileID: 2555902988800368086, guid: dcdeb5a9ff182a0429d913032bf2a266, type: 3}
   explosionForce: 100
   portalLayer:
