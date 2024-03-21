@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour
 {
     public AudioClip musicClip;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     private void Start()
     {

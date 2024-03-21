@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PlayerMenu : MonoBehaviour
 {
-    public Slider slider;
+    public Slider MouseSentivitySlider;
+    public Slider MusicSlider;
     public PlayerCam playercam;
+    public MusicPlayer Music;
     public void GoToMainMenu()
     {
         Application.Quit();
@@ -18,10 +18,16 @@ public class PlayerMenu : MonoBehaviour
     public void ChangeSensitivity()
     {
         
-        float sliderValue = slider.value;
+        float sliderValue = MouseSentivitySlider.value;
 
         
         playercam.sensX = sliderValue;
         playercam.sensY = sliderValue;
+    }
+
+    public void ChangeMusicVolume()
+    {
+        float volume = MusicSlider.value;
+        Music.audioSource.volume = volume; 
     }
 }

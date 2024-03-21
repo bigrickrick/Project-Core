@@ -20,28 +20,44 @@ public class GroundSlam : MonoBehaviour
     {
         if (!GetComponent<Player>().isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !isSlamming)
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                GroundSlamAttack();
+                isSlamming = true;
             }
         }
+        else
+        {
+            ResetSlam();
+        }
+        if(isSlamming == true)
+        {
+            GroundSlamAttack();
+        }
+        
+        
     }
 
     void GroundSlamAttack()
     {
-        isSlamming = true;
+        Vector3 horizontalVelocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z);
 
+        
         GetComponent<Rigidbody>().AddForce(Vector3.down * slamForce, ForceMode.Impulse);
 
-        Invoke("ResetSlam", 1f);
+        
+        GetComponent<Rigidbody>().velocity = horizontalVelocity;
+
+
     }
     void OnCollisionEnter(Collision collision)
     {
         if (isSlamming)
         {
-            if(groundSlamParticles != null)
+            if (groundSlamParticles != null)
             {
-                Instantiate(groundSlamParticles, collision.contacts[0].point, Quaternion.identity);
+
+                Quaternion particleRotation = Quaternion.FromToRotation(Vector3.up, collision.contacts[0].normal) * Quaternion.Euler(-90f, 0f, 0f);
+                Instantiate(groundSlamParticles, collision.contacts[0].point, particleRotation);
             }
             GetComponent<AudioSource>().clip = groundslamsoundeffect;
             GetComponent<AudioSource>().Play();
@@ -66,9 +82,13 @@ public class GroundSlam : MonoBehaviour
                         if (entity != null)
                         {
                             entity.DamageRecieve(groundSlamDamage);
+
                         }
+                        
                     }
+
                 }
+                ResetSlam();
             }
             
 

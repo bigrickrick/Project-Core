@@ -80,24 +80,25 @@ public class Sliding : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         if (pm.isGrounded)
         {
-            if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+           
+        }
+        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+        {
+            slideJumpTimer -= Time.deltaTime;
+            StartSlide();
+            if (slideJumpTimer <= 0)
             {
-                slideJumpTimer -= Time.deltaTime;
-                StartSlide();
-                if (slideJumpTimer <= 0)
-                {
-                    slideJumpTimer = 0.5f;
-
-                }
-            }
-            if (Input.GetKeyUp(slideKey) && sliding)
-            {
-                StopSlide();
-
+                slideJumpTimer = 0.5f;
 
             }
         }
-       
+        if (Input.GetKeyUp(slideKey) && sliding)
+        {
+            StopSlide();
+
+
+        }
+
 
 
     }

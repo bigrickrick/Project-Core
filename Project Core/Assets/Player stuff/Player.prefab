@@ -503,7 +503,7 @@ MonoBehaviour:
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 8192
-  groundSlamParticles: {fileID: 0}
+  groundSlamParticles: {fileID: 8493926876796312667, guid: 08808817bcecceb43aa2febe5e30ca3d, type: 3}
   cameraShakeIntensity: 0.1
   cameraShakeDuration: 0.1
   groundslamsoundeffect: {fileID: 8300000, guid: 6fb6dc1feb9461a429b848f9f986d712, type: 3}
@@ -535,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc9fdd12abd64f64caf110e152215994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParryPoint: {fileID: 0}
   maxParryTimeDuration: 5
   ParryTimer: 5
   BulletLayer:
@@ -544,6 +545,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   ParrySurfaceArea: 2
+  MaxWaitBeforeNextParry: 0
+  waittimerfornextparry: 0
+  successfullParticulesParry: {fileID: 0}
+  ParrySheild: {fileID: 0}
+  ParrySoundeffect: {fileID: 0}
 --- !u!1 &1457706481768990333
 GameObject:
   m_ObjectHideFlags: 0
