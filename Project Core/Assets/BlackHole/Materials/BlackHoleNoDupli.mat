@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlackHoleNoDupli
-  m_Shader: {fileID: 4800000, guid: 02807a2cb24419b41a6a58d2adc5bae7, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_Shader: {fileID: 4800000, guid: 2905f58b3f98b2541b3dbbc8ea306001, type: 3}
+  m_Parent: {fileID: 2100000, guid: db21d79da4ffea44f861cde8464d6135, type: 2}
+  m_ModifiedSerializedProperties: 2
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 5
@@ -25,10 +25,6 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Black: 10
-    - _Cutoff: 0.5
-    - _Offset: 0.01
-    - _Rad: 35.3
-    - _Refraction: 1
+    - _PowerOfLines: 1.5
     m_Colors: []
   m_BuildTextureStacks: []

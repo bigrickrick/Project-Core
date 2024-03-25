@@ -84,6 +84,10 @@ public class GroundSlam : MonoBehaviour
                             entity.DamageRecieve(groundSlamDamage);
 
                         }
+                        if (Player.Instance.OnSlope())
+                        {
+                            Player.Instance.GetComponent<Sliding>().IsSuperSliding = true;
+                        }
                         
                     }
 

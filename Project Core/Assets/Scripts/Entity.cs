@@ -11,7 +11,7 @@ public abstract class Entity : MonoBehaviour
     public float attackspeedModifier;
     public AudioClip gettinghitSoundEffect;
     
-    public void DamageRecieve(int damage)
+    public virtual void DamageRecieve(int damage)
     {
         Modifiers modifiers = GetComponent<Modifiers>();
         if(modifiers != null)
@@ -20,9 +20,13 @@ public abstract class Entity : MonoBehaviour
             {
                 HealthPoints = HealthPoints - damage;
 
-                AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-                audioSource.clip = gettinghitSoundEffect;
-                audioSource.Play();
+                AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+                if(audioSource != null)
+                {
+                    audioSource.clip = gettinghitSoundEffect;
+                    audioSource.Play();
+                }
+                
             }
         }
         

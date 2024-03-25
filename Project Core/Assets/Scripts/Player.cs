@@ -56,8 +56,14 @@ public class Player : Entity
         wallrunning,
         climbing
     }
+    public override void DamageRecieve(int damage)
+    {
+        mainCamera.GetComponent<DamageRecieveScreenEffect>().TakeDamageEffect();
+        base.DamageRecieve(damage);
+        
 
-    
+    }
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;

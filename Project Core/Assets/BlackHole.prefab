@@ -112,7 +112,7 @@ MonoBehaviour:
   attractionLayer:
     serializedVersion: 2
     m_Bits: 0
-  AttractionRange: 100
+  AttractionRange: 50
   AttractionForce: 100
-  LifeTime: 10
+  LifeTime: 8
   GrowthRate: 0.1

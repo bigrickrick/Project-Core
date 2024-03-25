@@ -8,7 +8,11 @@ public class Sliding : MonoBehaviour
     public Transform playerobj;
     private Rigidbody rb;
     private Player pm;
-
+    public bool IsSuperSliding;
+    public LayerMask EnemyLayer;
+    public float SuperSlideHurtBox;
+    public float superslideknockback;
+    public int superslideDamage;
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
@@ -46,6 +50,7 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         sliding = false;
+        IsSuperSliding = false;
         playerobj.localScale = new Vector3(playerobj.localScale.x, startYScale, playerobj.localScale.z);
     }
 
@@ -62,9 +67,11 @@ public class Sliding : MonoBehaviour
                 slideTimer -= Time.deltaTime;
             }
             
+            
         }
         else
         {
+            
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce*2f, ForceMode.Force);
         }
         
@@ -107,7 +114,38 @@ public class Sliding : MonoBehaviour
     {
         if (sliding)
         {
+            
             SlidingMovement();
+            if (IsSuperSliding)
+            {
+                Collider[] colliders = Physics.OverlapSphere(transform.position, SuperSlideHurtBox, EnemyLayer);
+
+                foreach (Collider col in colliders)
+                {
+                    Rigidbody rb = col.GetComponent<Rigidbody>();
+
+                    if (rb != null)
+                    {
+                        Vector3 direction = transform.position + col.transform.position;
+                        rb.AddForce(direction.normalized * superslideknockback * Time.fixedDeltaTime);
+
+                        Entity entity = col.GetComponent<Entity>();
+                        if(entity != null)
+                        {
+                            entity.DamageRecieve(superslideDamage);
+                        }
+
+
+
+                    }
+
+                }
+            }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, SuperSlideHurtBox);
     }
 }

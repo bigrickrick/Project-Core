@@ -205,7 +205,7 @@ MonoBehaviour:
   entity: {fileID: 1457706481272026462}
   EntitySpeed: 1
   attackspeedModifier: 1
-  gettinghitSoundEffect: {fileID: 0}
+  gettinghitSoundEffect: {fileID: 8300000, guid: 85dc0db70cfbabf4e9175049010f5c7f, type: 3}
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -219,7 +219,7 @@ MonoBehaviour:
   gameInput: {fileID: 0}
   firePoint: {fileID: 0}
   spellInventory: {fileID: 1457706481768990335}
-  SprintSpeed: 3
+  SprintSpeed: 0
   CroutchSpeed: 0.7
   CroutchYScale: 0.5
   isWallRunning: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   InitialAirForceDownTimer: 1
   mainCamera: {fileID: 0}
   dashing: 0
-  dashSpeed: 3
+  dashSpeed: 5
   playerAudio: {fileID: 1457706481272026454}
   PauseMenu: {fileID: 0}
   orientation: {fileID: 1457706480308833399}
@@ -282,6 +282,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1457706480308833399}
   playerobj: {fileID: 1457706481272026463}
+  IsSuperSliding: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  SuperSlideHurtBox: 5
+  superslideknockback: 10
+  superslideDamage: 8
   maxSlideTime: 0.75
   slideForce: 80
   slideYScale: 0.5
@@ -499,7 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slamForce: 100
   slamRadius: 10
-  groundSlamDamage: 50
+  groundSlamDamage: 100
   slamLayerMask:
     serializedVersion: 2
     m_Bits: 8192
