@@ -38,7 +38,7 @@ public class Player : Entity
     public float InitialAirForceDownTimer;
     private float AirForceDownTimer;
     private float ForceDownIncrease = 0;
-    [SerializeField] private Camera mainCamera;
+    public Camera mainCamera;
     private Vector3 moveDir;
     public bool dashing;
     public float dashSpeed;

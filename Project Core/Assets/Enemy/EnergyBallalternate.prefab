@@ -163,7 +163,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   explosionRadius: 5
-  explosionDamage: 5
+  explosionDamage: 25
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

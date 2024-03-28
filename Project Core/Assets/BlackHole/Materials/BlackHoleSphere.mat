@@ -30,6 +30,6 @@ Material:
     - _HoleSize: 0.06
     - _Power: 10
     m_Colors:
-    - _Center: {r: 648.9759, g: 13.577936, b: 577.9, a: 1}
+    - _Center: {r: 661.28326, g: -0.0888648, b: 416.50278, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

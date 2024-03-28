@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sliding : MonoBehaviour
 {
+    private Dictionary<Collider, float> enemyCooldowns = new Dictionary<Collider, float>();
+    public float enemyCooldownDuration = 1f;
     public Transform orientation;
     public Transform playerobj;
     private Rigidbody rb;
@@ -50,8 +52,11 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         sliding = false;
+        
         IsSuperSliding = false;
+        pm.mainCamera.GetComponent<PlayerCam>().SetSuperSideParticules(false);
         playerobj.localScale = new Vector3(playerobj.localScale.x, startYScale, playerobj.localScale.z);
+        
     }
 
     private void SlidingMovement()
@@ -118,6 +123,7 @@ public class Sliding : MonoBehaviour
             SlidingMovement();
             if (IsSuperSliding)
             {
+                
                 Collider[] colliders = Physics.OverlapSphere(transform.position, SuperSlideHurtBox, EnemyLayer);
 
                 foreach (Collider col in colliders)
@@ -126,19 +132,24 @@ public class Sliding : MonoBehaviour
 
                     if (rb != null)
                     {
-                        Vector3 direction = transform.position + col.transform.position;
-                        rb.AddForce(direction.normalized * superslideknockback * Time.fixedDeltaTime);
-
-                        Entity entity = col.GetComponent<Entity>();
-                        if(entity != null)
+                        
+                        if (!enemyCooldowns.ContainsKey(col) || Time.time > enemyCooldowns[col])
                         {
-                            entity.DamageRecieve(superslideDamage);
+                            
+                            Vector3 direction = transform.position + col.transform.position;
+                            rb.AddForce(direction.normalized * superslideknockback * Time.fixedDeltaTime);
+
+                            
+                            Entity entity = col.GetComponent<Entity>();
+                            if (entity != null)
+                            {
+                                entity.DamageRecieve(superslideDamage);
+                            }
+
+                            
+                            enemyCooldowns[col] = Time.time + enemyCooldownDuration;
                         }
-
-
-
                     }
-
                 }
             }
         }

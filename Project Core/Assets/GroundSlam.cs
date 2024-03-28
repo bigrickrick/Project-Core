@@ -65,7 +65,13 @@ public class GroundSlam : MonoBehaviour
 
             // Detect objects within the slam radius
             Collider[] colliders = Physics.OverlapSphere(transform.position, slamRadius, slamLayerMask);
+            if (Player.Instance.OnSlope() && isSlamming)
+            {
 
+                Player.Instance.GetComponent<Sliding>().IsSuperSliding = true;
+                Player.Instance.mainCamera.GetComponent<PlayerCam>().SetSuperSideParticules(true);
+            }
+            
             if (colliders != null && colliders.Length > 0)
             {
                 foreach (Collider col in colliders)
@@ -84,10 +90,7 @@ public class GroundSlam : MonoBehaviour
                             entity.DamageRecieve(groundSlamDamage);
 
                         }
-                        if (Player.Instance.OnSlope())
-                        {
-                            Player.Instance.GetComponent<Sliding>().IsSuperSliding = true;
-                        }
+                        
                         
                     }
 

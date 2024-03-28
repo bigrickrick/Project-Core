@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa9d49b7b97add46b90115b35cfa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileDamage: 15
+  ProjectileDamage: 20
   ProjectileSpeed: 100
   currentVelocity: 0
   whichBullet: 1
@@ -163,7 +163,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   explosionRadius: 3
-  explosionDamage: 30
+  explosionDamage: 40
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

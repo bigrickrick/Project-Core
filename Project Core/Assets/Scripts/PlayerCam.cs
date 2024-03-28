@@ -6,17 +6,36 @@ public class PlayerCam : MonoBehaviour
 {
     public float sensX;
     public float sensY;
-
+    [SerializeField]private ParticleSystem SuperSlideSpeedParticules;
     public Transform orientation;
     public Transform camHolder;
 
     private float xRotation;
     private float yRotation;
-
+    
+    public void SetSuperSideParticules(bool state)
+    {
+        if (SuperSlideSpeedParticules != null)
+        {
+            if(state == false)
+            {
+                SuperSlideSpeedParticules.Stop();
+            }
+            else
+            {
+                SuperSlideSpeedParticules.Play();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("SuperSlideSpeedParticules is not assigned in the inspector.");
+        }
+    }
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SetSuperSideParticules(false);
     }
     private void Update()
     {

@@ -285,10 +285,10 @@ MonoBehaviour:
   IsSuperSliding: 0
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   SuperSlideHurtBox: 5
-  superslideknockback: 10
-  superslideDamage: 8
+  superslideknockback: 150
+  superslideDamage: 80
   maxSlideTime: 0.75
   slideForce: 80
   slideYScale: 0.5
