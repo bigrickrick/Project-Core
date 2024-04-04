@@ -9,6 +9,9 @@ public abstract class EnemyAttacks: MonoBehaviour
     public float maxTimeBetweenAttacks;
     public bool alreadyAttacked;
     public EnemyAi enemy;
+    public AudioClip attackWarning;
+    protected AudioSource audioSource;
+    public bool isPlaying;
     public virtual void attack()
     {
 
@@ -18,10 +21,13 @@ public abstract class EnemyAttacks: MonoBehaviour
     {
         maxTimeBetweenAttacks = maxTimeBetweenAttacks /enemy.attackspeedModifier;
         timeBetweenAttacks = maxTimeBetweenAttacks;
+        
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
-        if(alreadyAttacked == true)
+        
+        if (alreadyAttacked == true)
         {
             if (timeBetweenAttacks > 0)
             {
@@ -39,6 +45,19 @@ public abstract class EnemyAttacks: MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        isPlaying = false;
         timeBetweenAttacks = maxTimeBetweenAttacks;
     }
+    public bool warningShotfinished;
+    public void WarningShot()
+    {
+        if(audioSource != null)
+        {
+            audioSource.clip = attackWarning;
+            audioSource.Play();
+        }
+        
+        
+    }
+    
 }

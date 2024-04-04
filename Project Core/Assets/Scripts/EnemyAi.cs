@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class EnemyAi : Entity
+public abstract class EnemyAi : Entity
 {
     public NavMeshAgent agent;
 
     public Transform player;
-
+    public GameObject EnemyHead;
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Vector3 walkPoint;
@@ -37,9 +37,13 @@ public class EnemyAi : Entity
         if (playerInSightrange && !playerInAttackRange) ChasePlayer();
         if (playerInSightrange && playerInAttackRange) StartCoroutine(AttackWithDelay());
         die();
-
+        if (playerInSightrange)
+        {
+            LookAtPlayer();
+        }
+        
     }
-    private void Patrolling()
+    protected void Patrolling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
@@ -65,10 +69,11 @@ public class EnemyAi : Entity
             walkPointSet = true;
         }
     }
-    private void ChasePlayer()
+    public virtual void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        transform.LookAt(player);
+        sightRange = 3*sightRange;
+        
     }
     private void RandomiseAttack()
     {
@@ -106,9 +111,9 @@ public class EnemyAi : Entity
             }
         }
     }
-    private IEnumerator AttackWithDelay()
+    public IEnumerator AttackWithDelay()
     {
-        transform.LookAt(player);
+        
         yield return new WaitForSeconds(3f);
         AttackPlayer();
 
@@ -117,11 +122,13 @@ public class EnemyAi : Entity
     }
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        
+        
         RandomiseAttack();
-        if(CurrentAttack.alreadyAttacked == false)
+        if (CurrentAttack.alreadyAttacked == false)
         {
+            CurrentAttack.WarningShot();
+            
             CurrentAttack.attack();
             CurrentAttack.alreadyAttacked = true;
         }
@@ -129,7 +136,25 @@ public class EnemyAi : Entity
 
 
     }
-    
+    public void LookAtPlayer()
+    {
+        
+        if(EnemyHead != null)
+        {
+            Vector3 directionToPlayer = (player.position - EnemyHead.transform.position).normalized;
+
+
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+
+            EnemyHead.transform.rotation = Quaternion.Slerp(EnemyHead.transform.rotation, targetRotation, 5f * Time.deltaTime);
+        }
+       
+    }
+    protected bool IsMoving()
+    {
+        return agent.velocity.magnitude > 0.1f;
+    }
 
     private void OnDrawGizmosSelected()
     {
