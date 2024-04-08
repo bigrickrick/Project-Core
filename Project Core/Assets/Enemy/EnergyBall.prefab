@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.078}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6017523119569650957}
@@ -147,12 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa9d49b7b97add46b90115b35cfa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileDamage: 40
-  ProjectileSpeed: 90
+  ProjectileDamage: 20
+  ProjectileSpeed: 100
   currentVelocity: 0
   whichBullet: 1
   Target: Player
   Tracking: 0
+  hasalifeTime: 0
   ExplosionParticles: {fileID: 198856239026640498, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
   detectionRange: 5
   portalLayer:
@@ -161,6 +162,8 @@ MonoBehaviour:
   ReflectLayer:
     serializedVersion: 2
     m_Bits: 2048
+  explosionRadius: 3
+  explosionDamage: 40
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,15 +178,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565382053996, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalPosition.x
@@ -247,15 +250,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2909474565592641530, guid: 55643fc5dbf92f2428a5ee05af360932, type: 3}
       propertyPath: m_ConstrainProportionsScale

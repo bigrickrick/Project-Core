@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 4727259761125210798}
   - component: {fileID: 1159297698131903762}
   - component: {fileID: 1442781525782344726}
+  - component: {fileID: 3514308947379274036}
   m_Layer: 13
   m_Name: TurretEnemy
   m_TagString: Enemy
@@ -545,8 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced951bee44fd2541bb7a049fcca808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 300
-  maxHealthPoints: 300
+  HealthPoints: 150
+  maxHealthPoints: 1
   entity: {fileID: 3788483629692996466}
   EntitySpeed: 15
   attackspeedModifier: 1
@@ -555,10 +556,26 @@ MonoBehaviour:
   rotationSpeed: 100
   EnemyCanon: {fileID: 9011652054058681493}
   Hpbar: {fileID: 8724339758890552339}
-  EnemyProjectile: {fileID: 2555902988800368086, guid: 46333da7070290d4391c992bcf188186, type: 3}
+  EnemyProjectile: {fileID: 2555902988800368086, guid: 96e77e115882ef94db8f70ff4ae7fc36, type: 3}
   firepoint: {fileID: 9132714426611787517}
-  baseAttackTimer: 0.5
+  baseAttackTimer: 1
   additionalFirePoint: {fileID: 7987478945188100053}
+--- !u!114 &3514308947379274036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788483629692996466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 0
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1 &4006245018230452498
 GameObject:
   m_ObjectHideFlags: 0

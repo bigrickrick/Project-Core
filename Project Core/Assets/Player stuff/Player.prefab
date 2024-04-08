@@ -132,6 +132,9 @@ GameObject:
   - component: {fileID: 1457706481272026454}
   - component: {fileID: 1457706481272026455}
   - component: {fileID: 1457706481272026448}
+  - component: {fileID: 627288239163038211}
+  - component: {fileID: 2593613514586279731}
+  - component: {fileID: -8597540236088075526}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -202,7 +205,7 @@ MonoBehaviour:
   entity: {fileID: 1457706481272026462}
   EntitySpeed: 1
   attackspeedModifier: 1
-  gettinghitSoundEffect: {fileID: 0}
+  gettinghitSoundEffect: {fileID: 8300000, guid: 85dc0db70cfbabf4e9175049010f5c7f, type: 3}
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -214,10 +217,9 @@ MonoBehaviour:
   groundDrag: 1
   player: {fileID: 1457706481272026462}
   gameInput: {fileID: 0}
-  Leftfirepoint: {fileID: 0}
-  Rightfirepoint: {fileID: 0}
+  firePoint: {fileID: 0}
   spellInventory: {fileID: 1457706481768990335}
-  SprintSpeed: 3
+  SprintSpeed: 0
   CroutchSpeed: 0.7
   CroutchYScale: 0.5
   isWallRunning: 0
@@ -229,10 +231,11 @@ MonoBehaviour:
   InitialAirForceDownTimer: 1
   mainCamera: {fileID: 0}
   dashing: 0
-  dashSpeed: 3
+  dashSpeed: 5
   playerAudio: {fileID: 1457706481272026454}
   PauseMenu: {fileID: 0}
   orientation: {fileID: 1457706480308833399}
+  IsParrying: 0
   state: 0
 --- !u!114 &1457706481272026458
 MonoBehaviour:
@@ -279,6 +282,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1457706480308833399}
   playerobj: {fileID: 1457706481272026463}
+  IsSuperSliding: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  SuperSlideHurtBox: 5
+  superslideknockback: 150
+  superslideDamage: 80
   maxSlideTime: 0.75
   slideForce: 80
   slideYScale: 0.5
@@ -482,6 +492,71 @@ MonoBehaviour:
   tiltAngle: 20
   dashCd: 1.5
   dashCdTimer: 0
+--- !u!114 &627288239163038211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457706481272026462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2cf34ef8e1db74abf7775fc7ff14b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slamForce: 100
+  slamRadius: 10
+  groundSlamDamage: 100
+  slamLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  groundSlamParticles: {fileID: 8493926876796312667, guid: 08808817bcecceb43aa2febe5e30ca3d, type: 3}
+  cameraShakeIntensity: 0.1
+  cameraShakeDuration: 0.1
+  groundslamsoundeffect: {fileID: 8300000, guid: 6fb6dc1feb9461a429b848f9f986d712, type: 3}
+--- !u!114 &2593613514586279731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457706481272026462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 1
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
+--- !u!114 &-8597540236088075526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457706481272026462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9fdd12abd64f64caf110e152215994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParryPoint: {fileID: 0}
+  maxParryTimeDuration: 5
+  ParryTimer: 5
+  BulletLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  Layertochangeforbullet:
+    serializedVersion: 2
+    m_Bits: 256
+  ParrySurfaceArea: 2
+  MaxWaitBeforeNextParry: 0
+  waittimerfornextparry: 0
+  successfullParticulesParry: {fileID: 0}
+  ParrySheild: {fileID: 0}
+  ParrySoundeffect: {fileID: 0}
 --- !u!1 &1457706481768990333
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,17 +605,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  SpellListAlternate:
-  - {fileID: 0}
-  - {fileID: 0}
+  currentspell: {fileID: 0}
+  ElementListlefthand: []
+  ElementListrighthand: []
   HasSpellInleftHand: 0
   HasSpellInRightHand: 0
-  currentSpell: {fileID: 0}
-  currentSpell2: {fileID: 0}
+  currentElementleft: {fileID: 0}
+  currentElementright: {fileID: 0}
   spellNumber: 0
   spellNumberAlternate: 0
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
+  spellProjectile: {fileID: 0}
 --- !u!1 &1457706482105840924
 GameObject:
   m_ObjectHideFlags: 0

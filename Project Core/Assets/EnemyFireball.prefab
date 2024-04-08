@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6017523119569650957}
@@ -147,12 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa9d49b7b97add46b90115b35cfa52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileDamage: 40
+  ProjectileDamage: 25
   ProjectileSpeed: 80
   currentVelocity: 0
   whichBullet: 1
   Target: Player
   Tracking: 0
+  hasalifeTime: 0
   ExplosionParticles: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   detectionRange: 5
   portalLayer:
@@ -161,6 +162,8 @@ MonoBehaviour:
   ReflectLayer:
     serializedVersion: 2
     m_Bits: 2048
+  explosionRadius: 5
+  explosionDamage: 10
 --- !u!1001 &8926713727462925665
 PrefabInstance:
   m_ObjectHideFlags: 0

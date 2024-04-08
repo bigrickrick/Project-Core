@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ShootAlternate",
+                    "name": "Parry",
                     "type": "Button",
                     "id": "007c4e87-ad4d-4d01-a6f5-9823a8c55508",
                     "expectedControlType": "Button",
@@ -194,7 +194,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShootAlternate",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

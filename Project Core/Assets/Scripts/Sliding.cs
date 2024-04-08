@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Sliding : MonoBehaviour
 {
+    private Dictionary<Collider, float> enemyCooldowns = new Dictionary<Collider, float>();
+    public float enemyCooldownDuration = 1f;
     public Transform orientation;
     public Transform playerobj;
     private Rigidbody rb;
     private Player pm;
-
+    public bool IsSuperSliding;
+    public LayerMask EnemyLayer;
+    public float SuperSlideHurtBox;
+    public float superslideknockback;
+    public int superslideDamage;
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
@@ -46,7 +52,11 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         sliding = false;
+        
+        IsSuperSliding = false;
+        pm.mainCamera.GetComponent<PlayerCam>().SetSuperSideParticules(false);
         playerobj.localScale = new Vector3(playerobj.localScale.x, startYScale, playerobj.localScale.z);
+        
     }
 
     private void SlidingMovement()
@@ -62,9 +72,11 @@ public class Sliding : MonoBehaviour
                 slideTimer -= Time.deltaTime;
             }
             
+            
         }
         else
         {
+            
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce*2f, ForceMode.Force);
         }
         
@@ -78,23 +90,27 @@ public class Sliding : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        
-        if (Input.GetKeyDown(slideKey)&& (horizontalInput !=0 || verticalInput != 0))
+        if (pm.isGrounded)
+        {
+           
+        }
+        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
         {
             slideJumpTimer -= Time.deltaTime;
             StartSlide();
             if (slideJumpTimer <= 0)
             {
                 slideJumpTimer = 0.5f;
-                
+
             }
         }
-        if(Input.GetKeyUp(slideKey) && sliding)
+        if (Input.GetKeyUp(slideKey) && sliding)
         {
             StopSlide();
-            
+
 
         }
+
 
 
     }
@@ -103,7 +119,44 @@ public class Sliding : MonoBehaviour
     {
         if (sliding)
         {
+            
             SlidingMovement();
+            if (IsSuperSliding)
+            {
+                
+                Collider[] colliders = Physics.OverlapSphere(transform.position, SuperSlideHurtBox, EnemyLayer);
+
+                foreach (Collider col in colliders)
+                {
+                    Rigidbody rb = col.GetComponent<Rigidbody>();
+
+                    if (rb != null)
+                    {
+                        
+                        if (!enemyCooldowns.ContainsKey(col) || Time.time > enemyCooldowns[col])
+                        {
+                            
+                            Vector3 direction = transform.position + col.transform.position;
+                            rb.AddForce(direction.normalized * superslideknockback * Time.fixedDeltaTime);
+
+                            
+                            Entity entity = col.GetComponent<Entity>();
+                            if (entity != null)
+                            {
+                                entity.DamageRecieve(superslideDamage);
+                            }
+
+                            
+                            enemyCooldowns[col] = Time.time + enemyCooldownDuration;
+                        }
+                    }
+                }
+            }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, SuperSlideHurtBox);
     }
 }

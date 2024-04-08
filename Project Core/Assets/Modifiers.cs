@@ -5,7 +5,7 @@ using UnityEngine;
 public class Modifiers : MonoBehaviour
 {
     [Header("WhatCanAffectIt")]
-    public bool IsMovable;
+    public bool CanBeIncapacited;
     public bool CanBedamage;
     public bool IsIncapacited;
 
@@ -19,12 +19,19 @@ public class Modifiers : MonoBehaviour
             Rage();
         }
     }
-
+    public void SetIncapacited()
+    {
+        if (CanBeIncapacited)
+        {
+            IsIncapacited = !IsIncapacited;
+        }
+    }
     private void Rage()
     {
-        gameObject.GetComponent<Entity>().EntitySpeed = gameObject.GetComponent<Entity>().EntitySpeed * 1.3f;
+        gameObject.GetComponent<Entity>().EntitySpeed = gameObject.GetComponent<Entity>().EntitySpeed * 1.5f;
         gameObject.GetComponent<Entity>().attackspeedModifier += 1;
 
     }
+    
     
 }
