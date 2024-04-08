@@ -13,11 +13,17 @@ public class PlayerAudio : MonoBehaviour
     public AudioClip DashingSound;
 
     private AudioSource audioSource;
-
+    public float movementThreshold = 0.1f;
+    public bool IsMoving()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        return rb.velocity.magnitude > movementThreshold;
+    }
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
+    
     public void PlayJumpSound()
     {
        
