@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4414902506271725554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7499465978041390420}
+  - component: {fileID: 2343550826560505258}
+  m_Layer: 0
+  m_Name: MissileLauncherAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7499465978041390420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414902506271725554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 459.94495, y: 43.154015, z: -78.72607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2343550826560505258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414902506271725554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a07d97e4c8b0645ae75f5df1786ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority: 1
+  timeBetweenAttacks: 3
+  maxTimeBetweenAttacks: 3
+  alreadyAttacked: 0
+  enemy: {fileID: 0}
+  attackWarning: {fileID: 0}
+  isPlaying: 0
+  warningShotfinished: 0
+  missilePrefab: {fileID: 2555902988800368086, guid: 46333da7070290d4391c992bcf188186, type: 3}
+  launchPoint: {fileID: 0}
+  missileCount: 20
+  launchForce: 10

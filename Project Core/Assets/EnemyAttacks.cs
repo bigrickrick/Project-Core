@@ -12,6 +12,7 @@ public abstract class EnemyAttacks: MonoBehaviour
     public AudioClip attackWarning;
     protected AudioSource audioSource;
     public bool isPlaying;
+    
     public virtual void attack()
     {
 
@@ -26,7 +27,6 @@ public abstract class EnemyAttacks: MonoBehaviour
     }
     private void Update()
     {
-        
         if (alreadyAttacked == true)
         {
             if (timeBetweenAttacks > 0)
@@ -39,14 +39,16 @@ public abstract class EnemyAttacks: MonoBehaviour
                 ResetAttack();
             }
         }
-       
-        
+
+
+
     }
-    private void ResetAttack()
+    public void ResetAttack()
     {
         alreadyAttacked = false;
         isPlaying = false;
         timeBetweenAttacks = maxTimeBetweenAttacks;
+        
     }
     public bool warningShotfinished;
     public void WarningShot()

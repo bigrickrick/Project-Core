@@ -59,7 +59,7 @@ public abstract class EnemyBasedScrpt : Entity
     {
         if (Hpbar == null)
         {
-            Debug.LogError(this.gameObject.name + " Hpbar is null!");
+            
             return;
         }
 

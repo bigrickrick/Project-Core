@@ -140,7 +140,9 @@ public abstract class EnemyAi : Entity
             CurrentAttack.WarningShot();
             
             CurrentAttack.attack();
+            
             CurrentAttack.alreadyAttacked = true;
+
         }
         
 

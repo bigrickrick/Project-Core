@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23799feb3c3274f4cb4ab81a5863b91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileDamage: 100
+  ProjectileDamage: 20
   ProjectileSpeed: 100
   currentVelocity: 1
   whichBullet: 1
@@ -189,7 +189,7 @@ MonoBehaviour:
   detectionRange: 0
   maxBounces: 4
   explosionRadius: 2
-  explosionDamage: 50
+  explosionDamage: 10
   Ground:
     serializedVersion: 2
     m_Bits: 8

@@ -75,7 +75,7 @@ public class DashBar : MonoBehaviour
         float fillAmount = currentbar.fillAmount;
         currentbar.fillAmount = 0;
         currentbar = bar;
-        currentbar.fillAmount = fillAmount;
+        //currentbar.fillAmount = fillAmount;
     }
 
     private void MoveToNextBar()
