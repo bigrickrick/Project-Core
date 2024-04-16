@@ -26,16 +26,16 @@ public class BossDrone : EnemyAi
         if (playerInSightrange && !playerInAttackRange) ChasePlayer();
         if (playerInSightrange && playerInAttackRange) StartCoroutine(AttackWithDelay());
         die();
-        if (playerInSightrange)
-        {
-            LookAtPlayer();
-        }
+        
 
     }
     public override void ChasePlayer()
     {
         base.ChasePlayer();
-        
+        if (playerInSightrange)
+        {
+            LookAtPlayer();
+        }
 
         if (player.transform.position.y > gameObject.transform.position.y)
         {
@@ -68,7 +68,7 @@ public class BossDrone : EnemyAi
         }
         else
         {
-            
+            LookAtPlayer();
             lazerAttack.attack();
         }
         

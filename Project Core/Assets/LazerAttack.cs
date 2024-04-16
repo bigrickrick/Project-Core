@@ -12,6 +12,7 @@ public class LazerAttack : MonoBehaviour
     public bool isLazerAttacking;
     public float trackingSpeed;
     public int LazerDamage;
+    public EnemyAi Enemy;
     public void attack()
     {
         
@@ -37,6 +38,7 @@ public class LazerAttack : MonoBehaviour
         
         if (_Beam.enabled)
         {
+            
             Vector3 playerPosition = Player.Instance.transform.position;
             Vector3 directionToPlayer = playerPosition - Firepoint.position;
 

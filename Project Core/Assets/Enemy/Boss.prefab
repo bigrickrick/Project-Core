@@ -728,8 +728,8 @@ MonoBehaviour:
   aboveHeight: 10
   belowHeight: 7
   lazerAttack: {fileID: 2978444434632824726}
-  maxRechargeTime: 10
-  rechargeTime: 10
+  maxRechargeTime: 7
+  rechargeTime: 7
 --- !u!54 &5596194537217942039
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1904,8 +1904,9 @@ MonoBehaviour:
   maxlength: 250
   MaxDuration: 8
   isLazerAttacking: 0
-  trackingSpeed: 3
+  trackingSpeed: 5
   LazerDamage: 2
+  Enemy: {fileID: 0}
 --- !u!1 &7266812394032857007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,19 +2373,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
       propertyPath: shotDelay
-      value: 1.2
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
       propertyPath: launchForce
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
       propertyPath: launchPoint
       value: 
       objectReference: {fileID: 8581514264503746229}
     - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
+      propertyPath: missileCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
+      propertyPath: missilePrefab
+      value: 
+      objectReference: {fileID: 8661054583428515226, guid: aa350648fbeec7e47be798a80675b5f6, type: 3}
+    - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
       propertyPath: maxRechargeTime
-      value: 5
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343550826560505258, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
+      propertyPath: currentShotDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4414902506271725554, guid: 5e2d614a5830831479c5e701bedc1111, type: 3}
       propertyPath: m_Name
@@ -3075,7 +3088,11 @@ PrefabInstance:
       objectReference: {fileID: 7714294348321268610}
     - target: {fileID: 3559989015143196037, guid: 698aa43d63b7c8f44bcf0f1908e4d93c, type: 3}
       propertyPath: dashForce
-      value: 120
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559989015143196037, guid: 698aa43d63b7c8f44bcf0f1908e4d93c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3559989015143196037, guid: 698aa43d63b7c8f44bcf0f1908e4d93c, type: 3}
       propertyPath: sparksParticleSystem
