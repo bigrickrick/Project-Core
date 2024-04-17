@@ -69,7 +69,7 @@ public class BossDrone : EnemyAi
         else
         {
             LookAtPlayer();
-            lazerAttack.attack();
+            lazerAttack.Attack();
         }
         
 

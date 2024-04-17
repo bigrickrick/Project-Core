@@ -16,6 +16,8 @@ public class MissileLaucherAttack : MonoBehaviour
     public EnemyAi enemy;
     private bool hasAlreadyAttacked;
 
+    public AudioClip audioClip;
+
     private void Update()
     {
         if (rechargeTimer > 0)
@@ -48,6 +50,10 @@ public class MissileLaucherAttack : MonoBehaviour
             if (missileRigidbody != null)
             {
                 missileRigidbody.AddForce(launchDirection * launchForce * missilePrefab.ProjectileSpeed, ForceMode.Impulse);
+            }
+            if (audioClip != null)
+            {
+                GetComponent<AudioSource>().PlayOneShot(audioClip);
             }
 
             yield return new WaitForSeconds(shotDelay);

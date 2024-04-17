@@ -15,7 +15,7 @@ public class BouncingBullet : Projectile
     public LayerMask Ground;
     public LayerMask Floor;
     private Rigidbody rb;
-
+    public AudioClip bouncingSoundEffect;
     private void Start()
     {
         if (whichBullet == WhichBullet.Player)
@@ -61,6 +61,10 @@ public class BouncingBullet : Projectile
         {
             if (bouncesLeft > 0)
             {
+                if (bouncingSoundEffect != null)
+                {
+                   GetComponent<AudioSource>().PlayOneShot(bouncingSoundEffect);
+                }
 
                 Vector3 targetPosition = Player.Instance.transform.position;
                 Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
