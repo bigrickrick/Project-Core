@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 627288239163038211}
   - component: {fileID: 2593613514586279731}
   - component: {fileID: -8597540236088075526}
+  - component: {fileID: 3663161479256751887}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dde6d888140d5946be776bb1423326d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCooldownDuration: 1
   orientation: {fileID: 1457706480308833399}
   playerobj: {fileID: 1457706481272026463}
   IsSuperSliding: 0
@@ -557,6 +559,19 @@ MonoBehaviour:
   successfullParticulesParry: {fileID: 0}
   ParrySheild: {fileID: 0}
   ParrySoundeffect: {fileID: 0}
+--- !u!114 &3663161479256751887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457706481272026462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61a26b93e43564438f54067a40fb3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMagnitude: 1
 --- !u!1 &1457706481768990333
 GameObject:
   m_ObjectHideFlags: 0
