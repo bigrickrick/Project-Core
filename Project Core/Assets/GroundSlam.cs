@@ -63,8 +63,9 @@ public class GroundSlam : MonoBehaviour
             GetComponent<AudioSource>().Play();
             Camera.main.GetComponent<CameraShake>().Shake(cameraShakeIntensity, cameraShakeDuration);
 
-            // Detect objects within the slam radius
+            
             Collider[] colliders = Physics.OverlapSphere(transform.position, slamRadius, slamLayerMask);
+            
             if (Player.Instance.OnSlope() && isSlamming)
             {
 
@@ -104,8 +105,9 @@ public class GroundSlam : MonoBehaviour
     void ResetSlam()
     {
         isSlamming = false;
+        
     }
-
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

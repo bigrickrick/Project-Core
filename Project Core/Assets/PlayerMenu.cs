@@ -24,6 +24,10 @@ public class PlayerMenu : MonoBehaviour
         playercam.sensX = sliderValue;
         playercam.sensY = sliderValue;
     }
+    private void Start()
+    {
+        ChangeMusicVolume();
+    }
 
     public void ChangeMusicVolume()
     {

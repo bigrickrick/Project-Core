@@ -6,8 +6,8 @@ public class ShootEnergyBalls : EnemyAttacks
 {
     public Transform firepoint;
     public GameObject EnergyBall;
-    public int numberOfShots = 10; 
-    public float timeBetweenShots = 0.5f; 
+    public int numberOfShots = 4; 
+    public float timeBetweenShots = 0.8f; 
     public float waveInterval = 1.5f; 
     private Vector3 playerDirection; 
     public override void attack()
@@ -37,7 +37,7 @@ public class ShootEnergyBalls : EnemyAttacks
 
             yield return new WaitForSeconds(timeBetweenShots);
         }
-
+        
         yield return new WaitForSeconds(waveInterval);
     }
     private void RotateHeadTowardsPlayer()

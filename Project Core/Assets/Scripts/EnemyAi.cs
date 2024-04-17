@@ -20,13 +20,23 @@ public abstract class EnemyAi : Entity
     public bool playerInSightrange, playerInAttackRange;
     public List<EnemyAttacks> ListOfAttack = new List<EnemyAttacks>();
     private EnemyAttacks CurrentAttack;
-    
+    public AudioClip IdleSoundEffect;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = EntitySpeed;
         RandomiseAttack();
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        if(IdleSoundEffect != null)
+        {
+            audioSource.clip = IdleSoundEffect;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        
+
     }
     private void Update()
     {
@@ -120,7 +130,7 @@ public abstract class EnemyAi : Entity
 
 
     }
-    private void AttackPlayer()
+    public virtual void AttackPlayer()
     {
         
         
@@ -130,7 +140,9 @@ public abstract class EnemyAi : Entity
             CurrentAttack.WarningShot();
             
             CurrentAttack.attack();
+            
             CurrentAttack.alreadyAttacked = true;
+
         }
         
 

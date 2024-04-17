@@ -36,6 +36,7 @@ public class WheelerDashAttack : EnemyAttacks
             rb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
 
             Quaternion targetRotation = Quaternion.LookRotation(-dashDirection);
+
             sparksParticleSystem.transform.rotation = targetRotation;
             transform.LookAt(transform.position + dashDirection);
 
@@ -50,6 +51,7 @@ public class WheelerDashAttack : EnemyAttacks
         }
         
         sparksParticleSystem.Stop();
+        
     }
 
 
