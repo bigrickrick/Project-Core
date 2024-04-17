@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dde6d888140d5946be776bb1423326d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCooldownDuration: 1
   orientation: {fileID: 1457706480308833399}
   playerobj: {fileID: 1457706481272026463}
   IsSuperSliding: 0
@@ -359,13 +360,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548760c8f0df5f74193a5e31a980dced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningSound: {fileID: 0}
+  walkingSound: {fileID: 0}
   jumpingSound: {fileID: 8300000, guid: 34dc1162a98bbe64297708723ef5cbef, type: 3}
   slidingSound: {fileID: 0}
   crouchingSound: {fileID: 0}
   potionSound: {fileID: 0}
   climbingSound: {fileID: 0}
   DashingSound: {fileID: 8300000, guid: b5215c3610f782040ab8b89cdd966b6f, type: 3}
+  movementThreshold: 0.1
+  minMoveSpeed: 0.1
+  groundCheckDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!82 &1457706481272026455
 AudioSource:
   m_ObjectHideFlags: 0

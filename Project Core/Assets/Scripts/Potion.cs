@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class Potion : MonoBehaviour
 {
     public int amount;
-
+    private AudioSource audioSource;
+    public AudioClip audioClip;
     public abstract void Apply(GameObject target);
     private Collider potionCollider;
     [SerializeField] private GameObject potionvisual;
@@ -16,7 +17,11 @@ public abstract class Potion : MonoBehaviour
 
         if (collidedObject.CompareTag("Player"))
         {
-
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(audioClip);
+            }
+           
             Apply(collidedObject);
             potionCollider.enabled = false;
             potionvisual.SetActive(false);
@@ -25,7 +30,9 @@ public abstract class Potion : MonoBehaviour
     
     void Start()
     {
-        potionCollider = GetComponent<Collider>(); // Get the collider component attached to the potion
+        potionCollider = GetComponent<Collider>();
+        audioSource = GetComponent<AudioSource>();
+
     }
     public float rotationSpeed = 50f; 
    
