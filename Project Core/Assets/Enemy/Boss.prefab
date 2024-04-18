@@ -700,8 +700,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85c66c6cd5913f49bbb7e795bd1bbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoints: 3000
-  maxHealthPoints: 3000
+  HealthPoints: 1500
+  maxHealthPoints: 1500
   entity: {fileID: 2114066613260419402}
   EntitySpeed: 50
   attackspeedModifier: 1
@@ -2782,7 +2782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       propertyPath: m_Layer
@@ -2873,6 +2873,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3714354534550698207}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7064157794905219470}
   m_SourcePrefab: {fileID: 100100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
 --- !u!4 &3672589285174469707 stripped
 Transform:
@@ -2923,6 +2926,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &7064157794905219470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672589285174638699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 0
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1001 &3689108139932379530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3008,7 +3027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2df433980a1fcb241915264cadcafe4d, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 2df433980a1fcb241915264cadcafe4d, type: 3}
       propertyPath: m_Layer
@@ -3090,6 +3109,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 2df433980a1fcb241915264cadcafe4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2354941497861483381}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 2df433980a1fcb241915264cadcafe4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3322762329889191285}
   m_SourcePrefab: {fileID: 100100000, guid: 2df433980a1fcb241915264cadcafe4d, type: 3}
 --- !u!4 &4312598010139951089 stripped
 Transform:
@@ -3140,6 +3162,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.46195492, y: 0.40197733, z: 0.7625631}
   m_Center: {x: 0.103312254, y: -8.108043e-17, z: -0.118718445}
+--- !u!114 &3322762329889191285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4312598010140107729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 0
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1001 &5459403583164756405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3158,7 +3196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       propertyPath: m_Layer
@@ -3249,6 +3287,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5793958217615088617}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9066470713470955545}
   m_SourcePrefab: {fileID: 100100000, guid: 2057bc528a273ef46990a4a58efc36ee, type: 3}
 --- !u!4 &5459403583164361525 stripped
 Transform:
@@ -3299,6 +3340,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.26
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9066470713470955545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459403583164659477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88183c00ce67d948816b412fe61c0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeIncapacited: 0
+  CanBedamage: 1
+  IsIncapacited: 0
+  IsRaged: 0
 --- !u!1001 &6447493132193997846
 PrefabInstance:
   m_ObjectHideFlags: 0

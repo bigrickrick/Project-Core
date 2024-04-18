@@ -46,6 +46,7 @@ public class Missile : Projectile
         AddDeviation(leadTimePercentage);
 
         RotateRocket();
+        
     }
 
     private void PredictMovement(float leadTimePercentage)
@@ -76,7 +77,7 @@ public class Missile : Projectile
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length == 0)
         {
-            return null; // No enemy found
+            return null; 
         }
 
         GameObject closestEnemy = null;
@@ -94,10 +95,10 @@ public class Missile : Projectile
 
         if (closestEnemy != null)
         {
-            return closestEnemy.GetComponent<Rigidbody>(); // Return the Rigidbody component of the closest enemy
+            return closestEnemy.GetComponent<Rigidbody>(); 
         }
 
-        return null; // Return null if no closest enemy is found (shouldn't happen if there are enemies)
+        return null; 
     }
 
 
