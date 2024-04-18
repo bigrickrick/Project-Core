@@ -45,7 +45,19 @@ public abstract class EnemyAi : Entity
 
         if (!playerInSightrange && !playerInAttackRange) Patrolling();
         if (playerInSightrange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightrange && playerInAttackRange) StartCoroutine(AttackWithDelay());
+        if (playerInSightrange && playerInAttackRange)
+        {
+            if (CanSeePlayer())
+            {
+                StartCoroutine(AttackWithDelay());
+            }
+            else
+            {
+                ChasePlayer();
+            }
+            
+        }
+           
         die();
         if (playerInSightrange)
         {
@@ -163,6 +175,33 @@ public abstract class EnemyAi : Entity
         }
        
     }
+    private bool CanSeePlayer()
+    {
+        if (EnemyHead != null)
+        {
+            Vector3 directionToPlayer = (player.position - EnemyHead.transform.position).normalized;
+
+            
+            LayerMask layerMask = whatIsPlayer | whatIsGround;
+
+            if (Physics.Raycast(EnemyHead.transform.position, directionToPlayer, out RaycastHit hit, sightRange, layerMask))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    // Player is in line of sight
+                    return true;
+                }
+                else
+                {
+                    
+                    return false;
+                }
+            }
+        }
+
+        
+        return false;
+    }
     protected bool IsMoving()
     {
         return agent.velocity.magnitude > 0.1f;
@@ -170,10 +209,10 @@ public abstract class EnemyAi : Entity
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, sightRange);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 }

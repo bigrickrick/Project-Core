@@ -5,26 +5,28 @@ using UnityEngine;
 public class PortalTomovePlayer : MonoBehaviour
 {
     public GameObject location; // Use lowercase for variable names by convention
-
+    public AudioClip BossMusic;
+    public MusicPlayer musicPlayer;
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collider that entered the portal trigger is the player
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<Player>())
         {
             // Move the player to the location of the portal
-            MovePlayer(location.transform.position);
+            MovePlayer(other.GetComponent<Player>());
         }
     }
 
-    private void MovePlayer(Vector3 newPosition)
+    private void MovePlayer(Player player)
     {
         
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+       
 
         if (player != null)
         {
-            // Set the player's position to the new position
-            player.transform.position = newPosition;
+
+            player.transform.position = location.transform.position;
+            musicPlayer.PlayMusic(BossMusic);
         }
         
     }
